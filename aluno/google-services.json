@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "552236749284",
+    "project_id": "cursoideal-985dc",
+    "storage_bucket": "cursoideal-985dc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:552236749284:android:7e2550113b9731bb60f7f1",
+        "android_client_info": {
+          "package_name": "br.com.cursoideal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "552236749284-joa2ndqumkt451n5vb95vc4njp12ph0r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2jcX4XRwO9JVM3TGvRTLa1Vg81hHGRGU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "552236749284-joa2ndqumkt451n5vb95vc4njp12ph0r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
