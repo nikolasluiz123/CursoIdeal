@@ -1,3 +1,21 @@
 <resources>
-    <string name="app_name">CursoIdeal</string>
+    <string name="app_name">Curso Ideal</string>
+    <string name="lista_cursos_fragment_label">Lista de Cursos</string>
+    <string name="login_fragment_label">Login</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="menu_logout_title">Logout</string>
+    <string name="login_hint_input_email">Digite seu e-mail</string>
+    <string name="login_hint_input_senha">Digite sua senha</string>
+    <string name="label_button_login">Login</string>
+    <string name="label_button_cadastre_se">Cadastrar-se</string>
+
+    <string name="message_success_register_user">Usuário Cadastrado com Sucesso!</string>
+    <string name="generic_error_message_register_user">Erro desconhecido durante o cadastro do usuário</string>
+    <string name="email_required">E-mail é obrigatório</string>
+    <string name="password_required">Senha é obrigatória</string>
+    <string name="generic_error_message_login">Erro desconhecido durante a autenticação</string>
+    <string name="label_buton_cadastrar">Cadastrar</string>
+    <string name="register_user_fragment_label">Cadastro de Usuário</string>
+    <string name="login_hint_input_nome">Digite seu nome</string>
 </resources>

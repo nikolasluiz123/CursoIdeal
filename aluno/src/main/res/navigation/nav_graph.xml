@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/LoginFragment">
+
+    <fragment
+        android:id="@+id/LoginFragment"
+        android:name="br.com.cursoideal.ui.fragment.LoginFragment"
+        android:label="@string/login_fragment_label"
+        tools:layout="@layout/fragment_login">
+
+        <action
+            android:id="@+id/action_LoginFragment_to_registerUserFragment"
+            app:destination="@id/registerUserFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_LoginFragment_to_listaProdutosFragment"
+            app:destination="@id/ListaCursosFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/LoginFragment"
+            app:popUpToInclusive="true" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/registerUserFragment"
+        android:name="br.com.cursoideal.ui.fragment.RegisterUserFragment"
+        android:label="@string/register_user_fragment_label"
+        tools:layout="@layout/fragment_register_user" />
+
+    <fragment
+        android:id="@+id/ListaCursosFragment"
+        android:name="br.com.cursoideal.ui.fragment.ListaCursosFragment"
+        android:label="@string/lista_cursos_fragment_label"
+        tools:layout="@layout/fragment_lista_cursos" />
+
+    <action
+        android:id="@+id/action_global_LoginFragment"
+        app:destination="@id/LoginFragment"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@anim/nav_default_pop_exit_anim"
+        app:popUpTo="@id/LoginFragment"
+        app:popUpToInclusive="true" />
+
+</navigation>
