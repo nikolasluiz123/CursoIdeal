@@ -1,6 +1,7 @@
 package br.com.cursoideal.ui.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import br.com.cursoideal.extensions.showSnackBar
 import br.com.cursoideal.model.UserAuthentication
 import br.com.cursoideal.transferobject.TOUser
 import br.com.cursoideal.ui.fragment.base.AbstractAuthenticableFragment
+import br.com.cursoideal.ui.dialog.bottomsheet.UploadImageBottomSheetDialog
 
 class RegisterUserFragment : AbstractAuthenticableFragment() {
 
@@ -33,6 +35,7 @@ class RegisterUserFragment : AbstractAuthenticableFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         configureRegisterUserButton()
+        configureEditPhoto()
     }
 
     private fun configureRegisterUserButton() {
@@ -75,6 +78,17 @@ class RegisterUserFragment : AbstractAuthenticableFragment() {
     private fun clearErrors() {
         binding.registerUserInputLayoutEmail.error = null
         binding.registerUserInputLayoutPassword.error = null
+    }
+
+    private fun configureEditPhoto() {
+        binding.registerUserPhoto.setOnClickListener {
+            activity?.let { activity ->
+                UploadImageBottomSheetDialog(binding.imageViewUserPhoto).show(
+                    activity.supportFragmentManager,
+                    UploadImageBottomSheetDialog.TAG
+                )
+            }
+        }
     }
 
     override fun onDestroyView() {

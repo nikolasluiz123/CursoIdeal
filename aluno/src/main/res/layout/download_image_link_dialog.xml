@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/download_image_link_dialog_app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/Theme.CursoIdeal.AppBarOverlay"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/download_image_link_dialog_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:navigationIcon="@drawable/ic_close_white"
+                app:popupTheme="@style/Theme.CursoIdeal.PopupOverlay" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <ImageView
+            android:id="@+id/imageview_photo"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/default_image_placeholder"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/download_image_link_dialog_app_bar"
+            app:layout_constraintVertical_bias="0" />
+
+        <Button
+            android:id="@+id/button_preview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_button_preview"
+            app:icon="@drawable/ic_arrow_circle_down_white"
+            app:layout_constraintBottom_toBottomOf="@id/imageview_photo"
+            app:layout_constraintEnd_toEndOf="@id/imageview_photo"
+            app:layout_constraintStart_toStartOf="@id/imageview_photo"
+            app:layout_constraintTop_toBottomOf="@id/imageview_photo" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_layout_link_image"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="@string/label_hint_input_link_image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button_preview">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_link_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textUri" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/download_image_link_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/imageview_photo"
+            app:layout_constraintEnd_toEndOf="@id/imageview_photo"
+            app:layout_constraintStart_toStartOf="@id/imageview_photo"
+            app:layout_constraintTop_toTopOf="@id/imageview_photo" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

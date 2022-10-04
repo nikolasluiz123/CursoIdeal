@@ -18,4 +18,14 @@
     <string name="label_buton_cadastrar">Cadastrar</string>
     <string name="register_user_fragment_label">Cadastro de Usuário</string>
     <string name="login_hint_input_nome">Digite seu nome</string>
+    <string name="label_upload_image_camera">Câmera</string>
+    <string name="label_upload_image_galerry">Galeria</string>
+    <string name="label_upload_image_link">Download por Link</string>
+    <string name="upload_link_description">Download</string>
+    <string name="upload_gallery_description">Foto da Galeria</string>
+    <string name="upload_camera_description">Câmera</string>
+    <string name="label_hint_input_link_image">Informe um link de imagem</string>
+    <string name="label_button_preview">Visualizar</string>
+    <string name="title_menu_item_confirm_image_downloaded">Confirmar Imagem Baixada</string>
+    <string name="label_title_download_imagem_link_dialog">Download da Foto</string>
 </resources>
