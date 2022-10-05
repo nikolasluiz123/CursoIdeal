@@ -8,8 +8,9 @@ class TOUser (private var userAuthentication: UserAuthentication = UserAuthentic
               private var user: User = User(),
               val email: MutableLiveData<String> = MutableLiveData<String>().also { it.value = userAuthentication.email},
               val password: MutableLiveData<String> = MutableLiveData<String>().also { it.value = userAuthentication.password},
-              val nome: MutableLiveData<String> = MutableLiveData<String>().also { it.value = user.nome},
-              val foto: MutableLiveData<String> = MutableLiveData<String>().also { it.value = user.foto}
+              val name: MutableLiveData<String> = MutableLiveData<String>().also { it.value = user.name},
+              var linkPhoto: String? = null,
+              var byteArrayPhoto: ByteArray? = null
 ) {
 
     fun getUserAuthentication(): UserAuthentication? {
@@ -21,8 +22,7 @@ class TOUser (private var userAuthentication: UserAuthentication = UserAuthentic
 
     fun getUser(): User? {
         return this.user.copy(
-            nome = nome.value ?: return null,
-            foto = foto.value ?: return null
+            name = name.value ?: return null
         )
     }
 }

@@ -5,11 +5,12 @@ import androidx.lifecycle.ViewModel
 import br.com.cursoideal.model.UserAuthentication
 import br.com.cursoideal.repository.FirebaseAuthenticationRepository
 import br.com.cursoideal.repository.Resource
+import br.com.cursoideal.transferobject.TOUser
 
 class AuthenticationViewModel(private val firebaseAuthRepository: FirebaseAuthenticationRepository) :
     ViewModel() {
 
-    fun save(user: UserAuthentication): LiveData<Resource<Boolean>> = firebaseAuthRepository.save(user)
+    fun save(toUser: TOUser): LiveData<Resource<Boolean>> = firebaseAuthRepository.save(toUser)
 
     fun login(user: UserAuthentication): LiveData<Resource<Boolean>> = firebaseAuthRepository.login(user)
 
