@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import br.com.cursoideal.databinding.FragmentListaCursosBinding
 import br.com.cursoideal.ui.fragment.base.AbstractSessionedFragment
+import br.com.cursoideal.ui.viewmodel.ComponentsViewControll
 
 class ListaCursosFragment : AbstractSessionedFragment() {
 
@@ -21,6 +22,12 @@ class ListaCursosFragment : AbstractSessionedFragment() {
         _binding = FragmentListaCursosBinding.inflate(inflater, container, false)
         return binding.root
 
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        appStateViewModel.hasComponents = ComponentsViewControll()
     }
 
     override fun onDestroyView() {

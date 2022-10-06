@@ -10,6 +10,7 @@ import br.com.cursoideal.extensions.showSnackBar
 import br.com.cursoideal.model.UserAuthentication
 import br.com.cursoideal.transferobject.TOUser
 import br.com.cursoideal.ui.fragment.base.AbstractAuthenticableFragment
+import br.com.cursoideal.ui.viewmodel.ComponentsViewControll
 
 class LoginFragment : AbstractAuthenticableFragment() {
 
@@ -31,6 +32,7 @@ class LoginFragment : AbstractAuthenticableFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        appStateViewModel.hasComponents = ComponentsViewControll(false)
         configureLoginButton()
         configureRegisterUserButton()
     }
