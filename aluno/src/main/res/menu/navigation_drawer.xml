@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/group_profile"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/menu_item_group_user"
+            android:title="@string/label_title_user">
+
+            <menu>
+                <item
+                    android:id="@+id/menu_item_user_profile"
+                    android:checkable="true"
+                    android:icon="@drawable/ic_account_black"
+                    android:title="@string/menu_item_user_profile" />
+
+                <item
+                    android:id="@+id/menu_item_courses_evaluation"
+                    android:checkable="true"
+                    android:icon="@drawable/ic_star"
+                    android:title="@string/menu_item_coruses_evaluation" />
+
+                <item
+                    android:id="@+id/menu_item_favorite_courses"
+                    android:checkable="true"
+                    android:icon="@drawable/ic_favorite_black"
+                    android:title="@string/menu_item_favorite_courses" />
+            </menu>
+        </item>
+
+    </group>
+
+    <group
+        android:id="@+id/group_courses"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/menu_item_group_courses"
+            android:title="@string/label_title_courses">
+            <menu>
+                <item
+                    android:id="@+id/menu_item_cursos"
+                    android:checkable="true"
+                    android:icon="@drawable/ic_list_black"
+                    android:title="@string/menu_item_cursos_title" />
+
+                <item
+                    android:id="@+id/menu_item_cadastro_cursos"
+                    android:checkable="true"
+                    android:icon="@drawable/ic_add_list"
+                    android:title="@string/menu_item_cadastro_cursos_title" />
+            </menu>
+        </item>
+    </group>
+
+    <group
+        android:id="@+id/group_application"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/menu_item_logout"
+            android:icon="@drawable/ic_logout_black"
+            android:title="@string/menu_item_title_logout" />
+
+        <item
+            android:id="@+id/menu_item_settings"
+            android:checkable="true"
+            android:icon="@drawable/ic_settings_black"
+            android:title="@string/menu_item_settings" />
+    </group>
+
+</menu>

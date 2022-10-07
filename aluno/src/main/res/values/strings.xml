@@ -29,4 +29,15 @@
     <string name="title_menu_item_confirm_image_downloaded">Confirmar Imagem Baixada</string>
     <string name="label_title_download_imagem_link_dialog">Download da Foto</string>
     <string name="name_required">Nome é obrigatório</string>
+    <string name="menu_item_cursos_title">Visualizar</string>
+    <string name="open">Abrir</string>
+    <string name="close">Fechar</string>
+    <string name="menu_item_cadastro_cursos_title">Adicionar</string>
+    <string name="label_title_courses">Cursos</string>
+    <string name="label_title_user">Usuário</string>
+    <string name="menu_item_user_profile">Perfil</string>
+    <string name="menu_item_coruses_evaluation">Avaliações Realizadas</string>
+    <string name="menu_item_settings">Configurações</string>
+    <string name="menu_item_favorite_courses">Cursos Favoritos</string>
+    <string name="menu_item_title_logout">Logout</string>
 </resources>
