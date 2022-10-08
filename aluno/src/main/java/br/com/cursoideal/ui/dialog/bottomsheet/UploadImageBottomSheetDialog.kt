@@ -5,7 +5,6 @@ import android.Manifest.permission.READ_EXTERNAL_STORAGE
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -18,6 +17,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
 import br.com.cursoideal.databinding.UploadImageBottomSheetDialogBinding
+import br.com.cursoideal.ui.dialog.DownloadImageLinkDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import java.io.File
 import java.util.*
@@ -81,7 +81,7 @@ class UploadImageBottomSheetDialog(private val imageView: ImageView) : BottomShe
             activity?.let { activity ->
                 DownloadImageLinkDialog { drawable ->
                     imageView.setImageDrawable(drawable)
-                }.show(activity.supportFragmentManager, "DownloadImageLinkDialog")
+                }.show(activity.supportFragmentManager)
 
                 dismiss()
             }

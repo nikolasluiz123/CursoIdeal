@@ -22,6 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
+                app:menu="@menu/menu_download_image_link_dialog"
                 app:navigationIcon="@drawable/ic_close_white"
                 app:popupTheme="@style/Theme.CursoIdeal.PopupOverlay" />
 

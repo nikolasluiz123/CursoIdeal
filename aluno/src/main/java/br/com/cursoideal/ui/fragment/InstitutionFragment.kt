@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import br.com.cursoideal.databinding.FragmentInstitutionBinding
+import br.com.cursoideal.ui.dialog.InstitutionsDialog
 import br.com.cursoideal.ui.fragment.base.AbstractSessionedFragment
-import br.com.cursoideal.ui.viewmodel.ComponentsViewControll
 
 class InstitutionFragment : AbstractSessionedFragment() {
 
@@ -19,6 +19,19 @@ class InstitutionFragment : AbstractSessionedFragment() {
     ): View {
         _binding = FragmentInstitutionBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.institutionLayoutName.setEndIconOnClickListener {
+            activity?.let { activity ->
+                InstitutionsDialog { toInstitution ->
+                    // atualiza o toInstitution do bindind para definir as informações
+                    // nos campos da tela
+                }.show(activity.supportFragmentManager)
+            }
+        }
     }
 
     override fun onDestroyView() {

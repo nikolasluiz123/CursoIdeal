@@ -1,15 +1,20 @@
-package br.com.cursoideal.ui.dialog.bottomsheet
+package br.com.cursoideal.ui.dialog
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import br.com.cursoideal.R
 import br.com.cursoideal.databinding.DownloadImageLinkDialogBinding
 import coil.imageLoader
 import coil.request.ImageRequest
+
+private const val TAG: String = "DownloadImageLinkDialog"
 
 class DownloadImageLinkDialog(private val callback: (drawable: Drawable?) -> Unit) : DialogFragment() {
 
@@ -69,12 +74,15 @@ class DownloadImageLinkDialog(private val callback: (drawable: Drawable?) -> Uni
         binding.downloadImageLinkDialogToolbar.apply {
             setNavigationOnClickListener { dismiss() }
             setTitle(R.string.label_title_download_imagem_link_dialog)
-            inflateMenu(R.menu.menu_download_image_link_dialog)
             setOnMenuItemClickListener {
                 callback(image)
                 dismiss()
                 true
             }
         }
+    }
+
+    fun show(manager: FragmentManager) {
+        super.show(manager, TAG)
     }
 }
