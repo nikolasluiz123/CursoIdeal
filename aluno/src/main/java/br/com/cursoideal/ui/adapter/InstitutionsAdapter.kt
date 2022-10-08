@@ -1,6 +1,5 @@
 package br.com.cursoideal.ui.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -8,7 +7,6 @@ import br.com.cursoideal.databinding.InstitutionItemBinding
 import br.com.cursoideal.transferobject.TOInstitution
 
 class InstitutionsAdapter(
-    private val context: Context,
     var onItemClick: (toInstitution: TOInstitution) -> Unit = { },
     institutions: List<TOInstitution> = emptyList()
 ) : RecyclerView.Adapter<InstitutionsAdapter.ViewHolder>() {
@@ -40,7 +38,7 @@ class InstitutionsAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        ViewHolder(InstitutionItemBinding.inflate(LayoutInflater.from(context)), onItemClick)
+        ViewHolder(InstitutionItemBinding.inflate(LayoutInflater.from(parent.context)), onItemClick)
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(institutions[position])
