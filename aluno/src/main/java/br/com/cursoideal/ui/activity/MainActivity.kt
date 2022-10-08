@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(navController.graph, binding.drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
-        navController.addOnDestinationChangedListener { _, destination, _ ->
+        navController.addOnDestinationChangedListener { _, _, _ ->
             appStateViewModel.components.observe(this) {
                 it?.let {  viewControll ->
                     if(viewControll.showAppBar) { supportActionBar?.show() } else { supportActionBar?.hide() }

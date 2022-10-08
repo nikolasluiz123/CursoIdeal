@@ -1,21 +1,16 @@
 package br.com.cursoideal.ui.fragment
 
-import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.graphics.drawable.toBitmap
 import br.com.cursoideal.R
 import br.com.cursoideal.databinding.FragmentRegisterUserBinding
 import br.com.cursoideal.extensions.showSnackBar
 import br.com.cursoideal.extensions.toByteArray
 import br.com.cursoideal.transferobject.TOUser
-import br.com.cursoideal.ui.fragment.base.AbstractAuthenticableFragment
 import br.com.cursoideal.ui.dialog.bottomsheet.UploadImageBottomSheetDialog
-import br.com.cursoideal.ui.viewmodel.ComponentsViewControll
-import java.io.ByteArrayInputStream
-import java.io.ByteArrayOutputStream
+import br.com.cursoideal.ui.fragment.base.AbstractAuthenticableFragment
 
 class RegisterUserFragment : AbstractAuthenticableFragment() {
 
@@ -37,8 +32,6 @@ class RegisterUserFragment : AbstractAuthenticableFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        appStateViewModel.hasComponents = ComponentsViewControll()
         configureRegisterUserButton()
         configureEditPhoto()
     }
