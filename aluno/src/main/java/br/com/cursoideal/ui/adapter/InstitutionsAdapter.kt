@@ -32,13 +32,12 @@ class InstitutionsAdapter(
             this.toInstitution = toInstitution
 
             binding.institutionItemName.text = toInstitution.name
-            binding.institutionItemAddress.text =
-                toInstitution.toAddress?.getCompleteAddress() ?: ""
+            binding.institutionItemAddress.text = toInstitution.toAddress.getCompleteAddress()
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        ViewHolder(InstitutionItemBinding.inflate(LayoutInflater.from(parent.context)), onItemClick)
+        ViewHolder(InstitutionItemBinding.inflate(LayoutInflater.from(parent.context), parent, false), onItemClick)
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(institutions[position])
@@ -48,7 +47,7 @@ class InstitutionsAdapter(
 
     // Método apenas para teste, substituir posteriormente por um método que receba
     // Apenas uma instituição
-    fun insert(institutions: List<TOInstitution>){
+    fun insert(institutions: List<TOInstitution>) {
         this.notifyItemRangeRemoved(0, this.institutions.size)
         this.institutions.clear()
         this.institutions.addAll(institutions)

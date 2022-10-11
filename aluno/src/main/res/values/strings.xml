@@ -48,8 +48,15 @@
     <string name="label_title_tab_instituition">Instituição</string>
     <string name="label_title_tab_course">Curso</string>
     <string name="label_title_tab_rating">Avaliações</string>
-    <string name="institution_hint_input_name">Nome da instituição</string>
+    <string name="institution_hint_input_name">Nome</string>
     <string name="label_content_description_end_icon_institution_name">Selecionar Instituição Cadastrada</string>
     <string name="title_menu_item_confirm_institution_selected">Confirmar Instituição Selecionada</string>
     <string name="label_title_institutions_dialog">Instituições</string>
+    <string name="institution_hint_input_cep">Cep</string>
+    <string name="institution_hint_input_state">Estado</string>
+    <string name="institution_hint_input_city">Cidade</string>
+    <string name="institution_hint_input_district">Bairro</string>
+    <string name="institution_hint_input_public_place">Logradouro</string>
+    <string name="institution_hint_input_complement">Complemento</string>
+    <string name="label_content_description_end_icon_institution_cep">Pesquisar Informações de Endereço a Partir do Cep</string>
 </resources>

@@ -1,33 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.fragment.InstitutionFragment">
+<layout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/institution_layout_name"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:hint="@string/institution_hint_input_name"
-        app:endIconDrawable="@drawable/ic_list_black"
-        app:endIconMode="custom"
-        app:endIconContentDescription="@string/label_content_description_end_icon_institution_name"
-        android:maxLength="255"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:endIconCheckable="true"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <data>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/institution_input_name"
+        <variable
+            name="toInstitution"
+            type="br.com.cursoideal.transferobject.TOInstitution" />
+    </data>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textCapWords" />
+            android:layout_height="wrap_content">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/institution_layout_name"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:hint="@string/institution_hint_input_name"
+                android:maxLength="255"
+                app:endIconCheckable="true"
+                app:endIconContentDescription="@string/label_content_description_end_icon_institution_name"
+                app:endIconDrawable="@drawable/ic_list_black"
+                app:endIconMode="custom"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/institution_input_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapWords"
+                    android:text="@={toInstitution.name}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/institution_layout_cep"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/institution_hint_input_cep"
+                app:endIconCheckable="true"
+                app:endIconContentDescription="@string/label_content_description_end_icon_institution_cep"
+                app:endIconDrawable="@drawable/ic_search_black"
+                app:endIconMode="custom"
+                app:layout_constraintEnd_toEndOf="@id/institution_layout_name"
+                app:layout_constraintStart_toStartOf="@id/institution_layout_name"
+                app:layout_constraintTop_toBottomOf="@id/institution_layout_name">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/institution_input_cep"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLength="9"
+                    android:text="@={toInstitution.toAddress.cep}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/institution_layout_state"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/institution_hint_input_state"
+                android:maxLength="255"
+                app:layout_constraintEnd_toEndOf="@id/institution_layout_cep"
+                app:layout_constraintStart_toStartOf="@id/institution_layout_cep"
+                app:layout_constraintTop_toBottomOf="@id/institution_layout_cep">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/institution_input_state"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapWords"
+                    android:text="@={toInstitution.toAddress.state}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/institution_layout_city"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/institution_hint_input_city"
+                android:maxLength="255"
+                app:layout_constraintEnd_toEndOf="@id/institution_layout_state"
+                app:layout_constraintStart_toStartOf="@id/institution_layout_state"
+                app:layout_constraintTop_toBottomOf="@id/institution_layout_state">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/institution_input_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapWords"
+                    android:text="@={toInstitution.toAddress.city}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/institution_layout_district"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/institution_hint_input_district"
+                android:maxLength="255"
+                app:layout_constraintEnd_toEndOf="@id/institution_layout_city"
+                app:layout_constraintStart_toStartOf="@id/institution_layout_city"
+                app:layout_constraintTop_toBottomOf="@id/institution_layout_city">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/institution_input_district"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapWords"
+                    android:text="@={toInstitution.toAddress.district}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/institution_layout_public_place"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/institution_hint_input_public_place"
+                android:maxLength="255"
+                app:layout_constraintEnd_toEndOf="@id/institution_layout_district"
+                app:layout_constraintStart_toStartOf="@id/institution_layout_district"
+                app:layout_constraintTop_toBottomOf="@id/institution_layout_district">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/institution_input_public_place"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapWords"
+                    android:text="@={toInstitution.toAddress.publicPlace}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/institution_layout_complement"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:hint="@string/institution_hint_input_complement"
+                android:maxLength="255"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/institution_layout_public_place"
+                app:layout_constraintStart_toStartOf="@id/institution_layout_public_place"
+                app:layout_constraintTop_toBottomOf="@id/institution_layout_public_place">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/institution_input_complement"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapWords"
+                    android:text="@={toInstitution.toAddress.complement}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

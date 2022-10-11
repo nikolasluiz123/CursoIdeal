@@ -62,83 +62,25 @@ class InstitutionsDialog(private val callback: (toInstitution: TOInstitution) ->
         adapter.insert(
             listOf(
                 TOInstitution(
-                    "Fundação Universidade Regional de Blumenau FURB",
+                    name = "UniSociesc - Blumenau",
                     TOAddress(
-                        "89030-903",
-                        "SC",
-                        "Blumenau",
-                        "Itoupava Seca",
-                        "R. Antônio da Veiga"
+                        cep = "89010-350",
+                        state = "SC",
+                        city = "Blumenau",
+                        district = "Jardim Blumenau",
+                        publicPlace = "R. Pandiá Calógeras",
+                        complement = "Complemento"
                     )
                 ),
                 TOInstitution(
-                    "UniSociesc - Blumenau",
+                    name = "Fundação Universidade Regional de Blumenau FURB",
                     TOAddress(
-                        "89010-350",
-                        "SC",
-                        "Blumenau",
-                        "Jardim Blumenau",
-                        "R. Pandiá Calógeras"
-                    )
-                ),
-                TOInstitution(
-                    "Fundação Universidade Regional de Blumenau FURB",
-                    TOAddress(
-                        "89030-903",
-                        "SC",
-                        "Blumenau",
-                        "Itoupava Seca",
-                        "R. Antônio da Veiga"
-                    )
-                ),
-                TOInstitution(
-                    "UniSociesc - Blumenau",
-                    TOAddress(
-                        "89010-350",
-                        "SC",
-                        "Blumenau",
-                        "Jardim Blumenau",
-                        "R. Pandiá Calógeras"
-                    )
-                ),
-                TOInstitution(
-                    "Fundação Universidade Regional de Blumenau FURB",
-                    TOAddress(
-                        "89030-903",
-                        "SC",
-                        "Blumenau",
-                        "Itoupava Seca",
-                        "R. Antônio da Veiga"
-                    )
-                ),
-                TOInstitution(
-                    "UniSociesc - Blumenau",
-                    TOAddress(
-                        "89010-350",
-                        "SC",
-                        "Blumenau",
-                        "Jardim Blumenau",
-                        "R. Pandiá Calógeras"
-                    )
-                ),
-                TOInstitution(
-                    "Fundação Universidade Regional de Blumenau FURB",
-                    TOAddress(
-                        "89030-903",
-                        "SC",
-                        "Blumenau",
-                        "Itoupava Seca",
-                        "R. Antônio da Veiga"
-                    )
-                ),
-                TOInstitution(
-                    "UniSociesc - Blumenau",
-                    TOAddress(
-                        "89010-350",
-                        "SC",
-                        "Blumenau",
-                        "Jardim Blumenau",
-                        "R. Pandiá Calógeras"
+                        cep = "89030-903",
+                        state = "SC",
+                        city = "Blumenau",
+                        district = "Itoupava Seca",
+                        publicPlace = "R. Antônio da Veiga",
+                        complement = "Complemento"
                     )
                 )
             )

@@ -1,15 +1,16 @@
 package br.com.cursoideal.transferobject
 
-class TOAddress(
-    private val cep: String,
-    private val state: String,
-    private val city: String,
-    private val district: String,
-    private val publicPlace: String,
-    private val complement: String = ""
+data class TOAddress(
+    var cep: String = "",
+    var state: String = "",
+    var city: String = "",
+    var district: String = "",
+    var publicPlace: String = "",
+    var complement: String = ""
 ) {
 
     fun getCompleteAddress(): String {
         return "$publicPlace - $district, $city - $state"
     }
+
 }

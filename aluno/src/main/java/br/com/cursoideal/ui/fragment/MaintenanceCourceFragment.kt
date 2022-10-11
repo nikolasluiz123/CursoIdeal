@@ -45,7 +45,6 @@ class MaintenanceCourceFragment : AbstractSessionedFragment() {
             when (position) {
                 0 -> tab.text = getString(R.string.label_title_tab_instituition)
                 1 -> tab.text = getString(R.string.label_title_tab_course)
-                2 -> tab.text = getString(R.string.label_title_tab_rating)
             }
 
         }.attach()
@@ -55,8 +54,7 @@ class MaintenanceCourceFragment : AbstractSessionedFragment() {
         binding.maintenanceCourseViewPager.adapter = ViewPagerAdapter(
             listOf(
                 InstitutionFragment(),
-                CourseFragment(),
-                RatingFragment()
+                CourseFragment()
             ), this
         )
     }

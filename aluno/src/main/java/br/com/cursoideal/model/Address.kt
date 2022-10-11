@@ -1,10 +1,15 @@
 package br.com.cursoideal.model
 
-class Address(
-    private val cep: String,
-    private val state: String,
-    private val city: String,
-    private val district: String,
-    private val publicPlace: String,
-    private val complement: String = ""
-)
+import androidx.lifecycle.MutableLiveData
+import br.com.cursoideal.transferobject.TOAddress
+
+data class Address(
+    var cep: String = "",
+    var state: String = "",
+    var city: String = "",
+    var district: String = "",
+    var publicPlace: String = "",
+    var complement: String = ""
+) {
+
+}
