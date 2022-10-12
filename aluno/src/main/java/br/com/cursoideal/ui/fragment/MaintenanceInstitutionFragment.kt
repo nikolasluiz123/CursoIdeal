@@ -4,25 +4,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import br.com.cursoideal.R
-import br.com.cursoideal.databinding.FragmentMaintenanceCourceBinding
+import br.com.cursoideal.databinding.FragmentMaintenanceInstitutionBinding
 import br.com.cursoideal.ui.adapter.ViewPagerAdapter
 import br.com.cursoideal.ui.fragment.base.AbstractSessionedFragment
-import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
-class MaintenanceCourceFragment : AbstractSessionedFragment() {
+class MaintenanceInstitutionFragment : AbstractSessionedFragment() {
 
-    private var _binding: FragmentMaintenanceCourceBinding? = null
+    private var _binding: FragmentMaintenanceInstitutionBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMaintenanceCourceBinding.inflate(inflater, container, false)
+        _binding = FragmentMaintenanceInstitutionBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -34,6 +31,10 @@ class MaintenanceCourceFragment : AbstractSessionedFragment() {
     private fun configureTabs() {
         configureViewPageAdapter()
         configureMediator()
+
+//        Posteriormente controlar o click e o scroll dinamicamente com esse código.
+//        binding.maintenanceCourseViewPager.isUserInputEnabled = false
+//        binding.maintenanceCourseTabLayout.getTabAt(1)?.view?.isEnabled = false
     }
 
     private fun configureMediator() {

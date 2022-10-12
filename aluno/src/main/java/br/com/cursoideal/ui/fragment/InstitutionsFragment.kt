@@ -6,12 +6,12 @@ import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.lifecycle.Lifecycle
 import br.com.cursoideal.R
-import br.com.cursoideal.databinding.FragmentListCoursesBinding
+import br.com.cursoideal.databinding.FragmentInstitutionsBinding
 import br.com.cursoideal.ui.fragment.base.AbstractSessionedFragment
 
-class ListCoursesFragment : AbstractSessionedFragment() {
+class InstitutionsFragment : AbstractSessionedFragment() {
 
-    private var _binding: FragmentListCoursesBinding? = null
+    private var _binding: FragmentInstitutionsBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -19,7 +19,7 @@ class ListCoursesFragment : AbstractSessionedFragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentListCoursesBinding.inflate(inflater, container, false)
+        _binding = FragmentInstitutionsBinding.inflate(inflater, container, false)
         return binding.root
 
     }
@@ -47,7 +47,7 @@ class ListCoursesFragment : AbstractSessionedFragment() {
     }
 
     private fun onAddCourse(): Boolean {
-        navController.navigate(ListCoursesFragmentDirections.actionListaCursosFragmentToMaintenanceCourceFragment())
+        navController.navigate(InstitutionsFragmentDirections.actionCoursesFragmentToMaintenanceCourceFragment())
         return true
     }
 

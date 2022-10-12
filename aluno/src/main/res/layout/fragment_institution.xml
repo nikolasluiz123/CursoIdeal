@@ -21,6 +21,7 @@
                 android:id="@+id/institution_layout_name"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
+
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:hint="@string/institution_hint_input_name"

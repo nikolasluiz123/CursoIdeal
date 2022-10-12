@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Curso Ideal</string>
-    <string name="lista_cursos_fragment_label">Lista de Cursos</string>
+    <string name="instituitions_fragment_label">Instituições</string>
     <string name="login_fragment_label">Login</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
@@ -16,7 +16,7 @@
     <string name="password_required">Senha é obrigatória</string>
     <string name="generic_error_message_login">Erro desconhecido durante a autenticação</string>
     <string name="label_buton_cadastrar">Cadastrar</string>
-    <string name="register_user_fragment_label">Cadastro de Usuário</string>
+    <string name="register_user_fragment_label">Novo Usuário</string>
     <string name="login_hint_input_nome">Digite seu nome</string>
     <string name="label_upload_image_camera">Câmera</string>
     <string name="label_upload_image_galerry">Galeria</string>
@@ -62,4 +62,8 @@
     <string name="label_new_course">Novo Curso</string>
     <string name="label_confirm">Confirmar</string>
     <string name="label_title_maintenance_course_dialog">Novo Curso</string>
+    <string name="label_save">Salvar</string>
+
+    <string name="required_message">O campo %s é obrigatório</string>
+    <string name="message_save_institution">Instituição Salva com Sucesso</string>
 </resources>

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/ListCoursesFragment">
+    app:startDestination="@id/InstitutionsFragment">
 
     <fragment
         android:id="@+id/LoginFragment"
@@ -19,8 +19,8 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
-            android:id="@+id/action_LoginFragment_to_listaProdutosFragment"
-            app:destination="@id/ListCoursesFragment"
+            android:id="@+id/action_LoginFragment_to_institutionsFragment"
+            app:destination="@id/InstitutionsFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -37,12 +37,12 @@
         tools:layout="@layout/fragment_register_user" />
 
     <fragment
-        android:id="@+id/ListCoursesFragment"
-        android:name="br.com.cursoideal.ui.fragment.ListCoursesFragment"
-        android:label="@string/lista_cursos_fragment_label"
-        tools:layout="@layout/fragment_list_courses">
+        android:id="@+id/InstitutionsFragment"
+        android:name="br.com.cursoideal.ui.fragment.InstitutionsFragment"
+        android:label="@string/instituitions_fragment_label"
+        tools:layout="@layout/fragment_institutions">
         <action
-            android:id="@+id/action_ListaCursosFragment_to_maintenanceCourceFragment"
+            android:id="@+id/action_CoursesFragment_to_maintenanceCourceFragment"
             app:destination="@id/maintenanceCourceFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
@@ -62,8 +62,8 @@
 
     <fragment
         android:id="@+id/maintenanceCourceFragment"
-        android:name="br.com.cursoideal.ui.fragment.MaintenanceCourceFragment"
+        android:name="br.com.cursoideal.ui.fragment.MaintenanceInstitutionFragment"
         android:label="@string/label_maintenance_cource_fragment"
-        tools:layout="@layout/fragment_maintenance_cource"/>
+        tools:layout="@layout/fragment_maintenance_institution" />
 
 </navigation>

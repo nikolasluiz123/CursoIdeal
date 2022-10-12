@@ -1,11 +1,15 @@
 package br.com.cursoideal.ui.fragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import br.com.cursoideal.R
 import br.com.cursoideal.databinding.FragmentInstitutionBinding
+import br.com.cursoideal.extensions.executeRequiredValidation
+import br.com.cursoideal.extensions.showSnackBar
 import br.com.cursoideal.transferobject.TOInstitution
 import br.com.cursoideal.ui.dialog.InstitutionsDialog
 import br.com.cursoideal.ui.fragment.base.AbstractSessionedFragment
@@ -13,15 +17,12 @@ import br.com.cursoideal.ui.viewmodel.InstitutionViewModel
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-private const val TAG = "InstitutionFragment"
-
 class InstitutionFragment : AbstractSessionedFragment() {
 
     private var _binding: FragmentInstitutionBinding? = null
     private val binding get() = _binding!!
 
     private val institutionViewModel: InstitutionViewModel by viewModel()
-    private val toInstitution by lazy { TOInstitution() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,13 +30,13 @@ class InstitutionFragment : AbstractSessionedFragment() {
     ): View {
         _binding = FragmentInstitutionBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
-        binding.toInstitution = toInstitution
 
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        configureMenu()
 
         institutionViewModel.toInstitution.observe(viewLifecycleOwner) {
             binding.toInstitution = it
@@ -61,6 +62,45 @@ class InstitutionFragment : AbstractSessionedFragment() {
                 }
             }
         }
+    }
+
+    private fun configureMenu() {
+        val menuHost: MenuHost = requireActivity()
+
+        menuHost.addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.menu_institution_fragment, menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                return when (menuItem.itemId) {
+                    R.id.menu_item_institution_fragment_save -> onSave()
+                    else -> false
+                }
+            }
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+    }
+
+    private fun onSave(): Boolean {
+        if (isValid()) {
+            institutionViewModel.toInstitution.value?.let(institutionViewModel::save)
+            view?.showSnackBar(getString(R.string.message_save_institution))
+        }
+
+        return true
+    }
+
+    private fun isValid(): Boolean {
+        var valid = true
+
+        valid = binding.institutionLayoutName.executeRequiredValidation() && valid
+        valid = binding.institutionLayoutCep.executeRequiredValidation() && valid
+        valid = binding.institutionLayoutState.executeRequiredValidation() && valid
+        valid = binding.institutionLayoutCity.executeRequiredValidation() && valid
+        valid = binding.institutionLayoutDistrict.executeRequiredValidation() && valid
+        valid = binding.institutionLayoutPublicPlace.executeRequiredValidation() && valid
+
+        return valid
     }
 
     override fun onDestroyView() {

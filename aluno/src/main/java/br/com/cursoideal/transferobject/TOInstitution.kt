@@ -1,6 +1,6 @@
 package br.com.cursoideal.transferobject
 
-class TOInstitution(
+data class TOInstitution(
     var name: String = "",
     var toAddress: TOAddress = TOAddress(),
 ) {

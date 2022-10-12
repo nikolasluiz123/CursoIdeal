@@ -43,7 +43,7 @@ class LoginFragment : AbstractAuthenticableFragment() {
                 if (validate(user)) {
                     authenticationViewModel.login(user).observe(viewLifecycleOwner) { resource ->
                         if (resource.data) {
-                            navController.navigate(LoginFragmentDirections.actionLoginFragmentToListaProdutosFragment())
+                            navController.navigate(LoginFragmentDirections.actionLoginFragmentToInstitutionsFragment())
                         } else {
                             val errorMessage =
                                 resource.error ?: getString(R.string.generic_error_message_login)
