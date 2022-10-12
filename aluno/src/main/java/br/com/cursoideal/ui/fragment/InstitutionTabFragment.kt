@@ -7,7 +7,7 @@ import androidx.core.view.MenuProvider
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import br.com.cursoideal.R
-import br.com.cursoideal.databinding.FragmentInstitutionBinding
+import br.com.cursoideal.databinding.FragmentInstitutionTabBinding
 import br.com.cursoideal.extensions.executeRequiredValidation
 import br.com.cursoideal.extensions.showSnackBar
 import br.com.cursoideal.transferobject.TOInstitution
@@ -17,9 +17,9 @@ import br.com.cursoideal.ui.viewmodel.InstitutionViewModel
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class InstitutionFragment : AbstractSessionedFragment() {
+class InstitutionTabFragment(private val args: MaintenanceInstitutionFragmentArgs) : AbstractSessionedFragment() {
 
-    private var _binding: FragmentInstitutionBinding? = null
+    private var _binding: FragmentInstitutionTabBinding? = null
     private val binding get() = _binding!!
 
     private val institutionViewModel: InstitutionViewModel by viewModel()
@@ -28,7 +28,7 @@ class InstitutionFragment : AbstractSessionedFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentInstitutionBinding.inflate(inflater, container, false)
+        _binding = FragmentInstitutionTabBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
 
         return binding.root
@@ -60,6 +60,12 @@ class InstitutionFragment : AbstractSessionedFragment() {
                         institutionViewModel.toInstitution.postValue(newInstitution)
                     }
                 }
+            }
+        }
+
+        args.institutionId?.let { id ->
+            institutionViewModel.findById(id).observe(viewLifecycleOwner) { toInstitution ->
+                institutionViewModel.toInstitution.postValue(toInstitution)
             }
         }
     }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
 import br.com.cursoideal.R
 import br.com.cursoideal.databinding.FragmentMaintenanceInstitutionBinding
 import br.com.cursoideal.ui.adapter.ViewPagerAdapter
@@ -14,6 +15,8 @@ class MaintenanceInstitutionFragment : AbstractSessionedFragment() {
 
     private var _binding: FragmentMaintenanceInstitutionBinding? = null
     private val binding get() = _binding!!
+
+    val args: MaintenanceInstitutionFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,8 +57,8 @@ class MaintenanceInstitutionFragment : AbstractSessionedFragment() {
     private fun configureViewPageAdapter() {
         binding.maintenanceCourseViewPager.adapter = ViewPagerAdapter(
             listOf(
-                InstitutionFragment(),
-                CourseFragment()
+                InstitutionTabFragment(args),
+                CourseTabFragment(args)
             ), this
         )
     }

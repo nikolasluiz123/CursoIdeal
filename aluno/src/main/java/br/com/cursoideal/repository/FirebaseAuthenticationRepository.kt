@@ -3,6 +3,7 @@ package br.com.cursoideal.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import br.com.cursoideal.model.UserAuthentication
+import br.com.cursoideal.repository.enumerations.FirebaseCollections
 import br.com.cursoideal.transferobject.TOUser
 import com.google.firebase.auth.*
 import com.google.firebase.firestore.FirebaseFirestore
@@ -31,7 +32,7 @@ class FirebaseAuthenticationRepository(
                                 reference.putBytes(byteArray).addOnSuccessListener { uploadTask ->
                                     uploadTask.uploadSessionUri?.let { uri ->
                                         toUser.getUser()?.let { user ->
-                                            val document = firebaseFirestore.collection("users").document()
+                                            val document = firebaseFirestore.collection(FirebaseCollections.USERS.value).document()
                                             user.linkPhoto = uri.toString()
                                             document.set(user)
                                         }

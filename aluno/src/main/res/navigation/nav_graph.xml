@@ -42,7 +42,7 @@
         android:label="@string/instituitions_fragment_label"
         tools:layout="@layout/fragment_institutions">
         <action
-            android:id="@+id/action_CoursesFragment_to_maintenanceCourceFragment"
+            android:id="@+id/action_InstitutionsFragment_to_maintenanceCourceFragment"
             app:destination="@id/maintenanceCourceFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
@@ -64,6 +64,12 @@
         android:id="@+id/maintenanceCourceFragment"
         android:name="br.com.cursoideal.ui.fragment.MaintenanceInstitutionFragment"
         android:label="@string/label_maintenance_cource_fragment"
-        tools:layout="@layout/fragment_maintenance_institution" />
+        tools:layout="@layout/fragment_maintenance_institution" >
+        <argument
+            android:name="institutionId"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="null" />
+    </fragment>
 
 </navigation>

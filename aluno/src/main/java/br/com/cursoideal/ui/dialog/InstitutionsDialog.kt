@@ -12,6 +12,8 @@ import br.com.cursoideal.transferobject.TOAddress
 import br.com.cursoideal.transferobject.TOInstitution
 import br.com.cursoideal.ui.adapter.InstitutionsAdapter
 import br.com.cursoideal.ui.dialog.base.AbstractFullScreenDialog
+import br.com.cursoideal.ui.viewmodel.InstitutionViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class InstitutionsDialog(private val callback: (toInstitution: TOInstitution) -> Unit) : AbstractFullScreenDialog() {
 
@@ -21,6 +23,8 @@ class InstitutionsDialog(private val callback: (toInstitution: TOInstitution) ->
     private val binding get() = _binding!!
 
     private val adapter by lazy { InstitutionsAdapter() }
+
+    private val institutionViewModel: InstitutionViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,33 +48,8 @@ class InstitutionsDialog(private val callback: (toInstitution: TOInstitution) ->
             dismiss()
         }
 
-        // Código de Teste
-        adapter.insert(
-            listOf(
-                TOInstitution(
-                    name = "UniSociesc - Blumenau",
-                    TOAddress(
-                        cep = "89010-350",
-                        state = "SC",
-                        city = "Blumenau",
-                        district = "Jardim Blumenau",
-                        publicPlace = "R. Pandiá Calógeras",
-                        complement = "Complemento"
-                    )
-                ),
-                TOInstitution(
-                    name = "Fundação Universidade Regional de Blumenau FURB",
-                    TOAddress(
-                        cep = "89030-903",
-                        state = "SC",
-                        city = "Blumenau",
-                        district = "Itoupava Seca",
-                        publicPlace = "R. Antônio da Veiga",
-                        complement = "Complemento"
-                    )
-                )
-            )
-        )
+        institutionViewModel.findAll().observe(viewLifecycleOwner) { institutions ->
+            adapter.insert(institutions)
+        }
     }
-
 }

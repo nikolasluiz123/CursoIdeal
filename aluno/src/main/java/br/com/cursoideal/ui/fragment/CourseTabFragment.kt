@@ -6,15 +6,15 @@ import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.lifecycle.Lifecycle
 import br.com.cursoideal.R
-import br.com.cursoideal.databinding.FragmentCourseBinding
+import br.com.cursoideal.databinding.FragmentCourseTabBinding
 import br.com.cursoideal.transferobject.TOCourse
 import br.com.cursoideal.ui.adapter.CoursesAdapter
 import br.com.cursoideal.ui.dialog.MaintenanceCourseDialog
 import br.com.cursoideal.ui.fragment.base.AbstractSessionedFragment
 
-class CourseFragment : AbstractSessionedFragment() {
+class CourseTabFragment(private val args: MaintenanceInstitutionFragmentArgs) : AbstractSessionedFragment() {
 
-    private var _binding: FragmentCourseBinding? = null
+    private var _binding: FragmentCourseTabBinding? = null
     private val binding get() = _binding!!
 
     private val adapter by lazy { CoursesAdapter() }
@@ -23,7 +23,7 @@ class CourseFragment : AbstractSessionedFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCourseBinding.inflate(inflater, container, false)
+        _binding = FragmentCourseTabBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -38,51 +38,6 @@ class CourseFragment : AbstractSessionedFragment() {
                 MaintenanceCourseDialog(toCourse).show(activity.supportFragmentManager)
             }
         }
-
-        adapter.insert(
-            listOf(
-                TOCourse(
-                    "Ciência da Computação",
-                    "R$ 1400,00"
-                ),
-                TOCourse(
-                    "Análise e Desenvolvimento de Sistemas",
-                    "R$ 1000,00"
-                ),
-                TOCourse(
-                    "Ciência da Computação",
-                    "R$ 1400,00"
-                ),
-                TOCourse(
-                    "Análise e Desenvolvimento de Sistemas",
-                    "R$ 1000,00"
-                ),
-                TOCourse(
-                    "Ciência da Computação",
-                    "R$ 1400,00"
-                ),
-                TOCourse(
-                    "Análise e Desenvolvimento de Sistemas",
-                    "R$ 1000,00"
-                ),
-                TOCourse(
-                    "Ciência da Computação",
-                    "R$ 1400,00"
-                ),
-                TOCourse(
-                    "Análise e Desenvolvimento de Sistemas",
-                    "R$ 1000,00"
-                ),
-                TOCourse(
-                    "Ciência da Computação",
-                    "R$ 1400,00"
-                ),
-                TOCourse(
-                    "Análise e Desenvolvimento de Sistemas",
-                    "R$ 1000,00"
-                )
-            )
-        )
     }
 
     private fun configureMenu() {

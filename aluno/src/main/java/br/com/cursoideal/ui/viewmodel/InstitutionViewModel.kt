@@ -17,8 +17,10 @@ class InstitutionViewModel(
 
     fun save(toInstitution: TOInstitution): LiveData<Resource<Boolean>> {
         val institution = Institution(
+            toInstitution.id,
             toInstitution.name,
             Address(
+                toInstitution.toAddress.id,
                 toInstitution.toAddress.cep,
                 toInstitution.toAddress.state,
                 toInstitution.toAddress.city,
@@ -30,6 +32,10 @@ class InstitutionViewModel(
 
         return institutionRepository.save(institution)
     }
+
+    fun findAll(): LiveData<List<TOInstitution>> = institutionRepository.findAll()
+
+    fun findById(id: String): LiveData<TOInstitution?> = institutionRepository.findById(id)
 
     suspend fun getTOAddresBy(cep: String): TOAddress? = institutionRepository.getTOAddresBy(cep)
 }

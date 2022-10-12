@@ -1,6 +1,7 @@
 package br.com.cursoideal.model
 
-data class Institution(
+class Institution(
+    id: String? = null,
     val name: String = "",
     val address: Address = Address()
-)
+) : BaseModel(id)

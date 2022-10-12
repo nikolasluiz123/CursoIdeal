@@ -39,8 +39,6 @@ class InstitutionsAdapter(
 
     override fun getItemCount(): Int = institutions.size
 
-    // Método apenas para teste, substituir posteriormente por um método que receba
-    // Apenas uma instituição
     fun insert(institutions: List<TOInstitution>) {
         this.notifyItemRangeRemoved(0, this.institutions.size)
         this.institutions.clear()

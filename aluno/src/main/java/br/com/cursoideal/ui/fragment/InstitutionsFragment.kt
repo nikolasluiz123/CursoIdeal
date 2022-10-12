@@ -7,12 +7,19 @@ import androidx.core.view.MenuProvider
 import androidx.lifecycle.Lifecycle
 import br.com.cursoideal.R
 import br.com.cursoideal.databinding.FragmentInstitutionsBinding
+import br.com.cursoideal.ui.adapter.InstitutionsAdapter
 import br.com.cursoideal.ui.fragment.base.AbstractSessionedFragment
+import br.com.cursoideal.ui.viewmodel.InstitutionViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class InstitutionsFragment : AbstractSessionedFragment() {
 
     private var _binding: FragmentInstitutionsBinding? = null
     private val binding get() = _binding!!
+
+    private val adapter by lazy { InstitutionsAdapter() }
+
+    private val institutionViewModel: InstitutionViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,6 +34,17 @@ class InstitutionsFragment : AbstractSessionedFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         configureMenu()
+
+        binding.institutionsFragmentRecyclerview.adapter = adapter
+
+        adapter.onItemClick = { toInstitution ->
+            navController.navigate(InstitutionsFragmentDirections.actionInstitutionsFragmentToMaintenanceCourceFragment(toInstitution.id))
+        }
+
+        institutionViewModel.findAll().observe(viewLifecycleOwner) { institutions ->
+            adapter.insert(institutions)
+        }
+
     }
 
     private fun configureMenu() {
@@ -47,7 +65,7 @@ class InstitutionsFragment : AbstractSessionedFragment() {
     }
 
     private fun onAddCourse(): Boolean {
-        navController.navigate(InstitutionsFragmentDirections.actionCoursesFragmentToMaintenanceCourceFragment())
+        navController.navigate(InstitutionsFragmentDirections.actionInstitutionsFragmentToMaintenanceCourceFragment())
         return true
     }
 
