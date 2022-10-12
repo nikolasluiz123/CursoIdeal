@@ -20,7 +20,8 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:navigationIcon="@drawable/ic_close_white"
-            app:popupTheme="@style/Theme.CursoIdeal.PopupOverlay" />
+            app:popupTheme="@style/Theme.CursoIdeal.PopupOverlay"
+            app:title="@string/label_title_institutions_dialog" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

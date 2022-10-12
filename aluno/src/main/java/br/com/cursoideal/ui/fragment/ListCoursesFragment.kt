@@ -8,7 +8,6 @@ import androidx.lifecycle.Lifecycle
 import br.com.cursoideal.R
 import br.com.cursoideal.databinding.FragmentListCoursesBinding
 import br.com.cursoideal.ui.fragment.base.AbstractSessionedFragment
-import br.com.cursoideal.ui.viewmodel.ComponentsViewControll
 
 class ListCoursesFragment : AbstractSessionedFragment() {
 
@@ -40,7 +39,7 @@ class ListCoursesFragment : AbstractSessionedFragment() {
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 return when (menuItem.itemId) {
-                    R.id.menu_item_add_course -> onAddCourse()
+                    R.id.menu_item_add_institution -> onAddCourse()
                     else -> false
                 }
             }

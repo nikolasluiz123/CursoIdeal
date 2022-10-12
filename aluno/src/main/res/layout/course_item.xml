@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="toCourse"
+            type="br.com.cursoideal.transferobject.TOCourse" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:checkable="true"
+        android:clickable="true"
+        app:cardElevation="8dp">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/course_item_label_nome"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Nome"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toStartOf="@id/course_item_label_mensalidade"
+                app:layout_constraintHorizontal_weight="0.7"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/course_item_instituicao"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{toCourse.name}"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toStartOf="@id/course_item_mensalidade"
+                app:layout_constraintHorizontal_weight="0.7"
+                app:layout_constraintStart_toStartOf="@id/course_item_label_nome"
+                app:layout_constraintTop_toBottomOf="@id/course_item_label_nome"
+                tools:text="Ciência da Computação" />
+
+            <TextView
+                android:id="@+id/course_item_label_mensalidade"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Mensalidade"
+                android:textAlignment="textEnd"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_weight="0.3"
+                app:layout_constraintStart_toEndOf="@id/course_item_label_nome"
+                app:layout_constraintTop_toTopOf="@id/course_item_label_nome" />
+
+            <TextView
+                android:id="@+id/course_item_mensalidade"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@{toCourse.value}"
+                android:textAlignment="textEnd"
+                android:textColor="@color/green"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/course_item_label_mensalidade"
+                app:layout_constraintHorizontal_weight="0.3"
+                app:layout_constraintStart_toEndOf="@id/course_item_instituicao"
+                app:layout_constraintTop_toBottomOf="@id/course_item_label_mensalidade"
+                tools:text="R$ 1400,00" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

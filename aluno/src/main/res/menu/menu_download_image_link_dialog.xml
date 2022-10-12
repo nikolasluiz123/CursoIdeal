@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/menu_item_confirm_image_downloaded"
-        android:icon="@drawable/ic_check_whte"
+        android:icon="@drawable/ic_check_white"
         android:title="@string/title_menu_item_confirm_image_downloaded"
         app:showAsAction="always" />
 

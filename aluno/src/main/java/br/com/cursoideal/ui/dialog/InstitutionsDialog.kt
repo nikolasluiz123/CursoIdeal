@@ -11,29 +11,16 @@ import br.com.cursoideal.databinding.InstitutionsDialogBinding
 import br.com.cursoideal.transferobject.TOAddress
 import br.com.cursoideal.transferobject.TOInstitution
 import br.com.cursoideal.ui.adapter.InstitutionsAdapter
+import br.com.cursoideal.ui.dialog.base.AbstractFullScreenDialog
 
-private const val TAG: String = "InstitutionsDialog"
+class InstitutionsDialog(private val callback: (toInstitution: TOInstitution) -> Unit) : AbstractFullScreenDialog() {
 
-class InstitutionsDialog(private val callback: (toInstitution: TOInstitution) -> Unit) : DialogFragment() {
+    override val dialogTag: String = "InstitutionsDialog"
 
     private var _binding: InstitutionsDialogBinding? = null
     private val binding get() = _binding!!
 
     private val adapter by lazy { InstitutionsAdapter() }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        setStyle(STYLE_NORMAL, R.style.AppTheme_FullScreenDialog)
-    }
-
-    override fun onStart() {
-        super.onStart()
-
-        val width = ViewGroup.LayoutParams.MATCH_PARENT
-        val height = ViewGroup.LayoutParams.MATCH_PARENT
-        dialog?.window?.setLayout(width, height)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,7 +35,6 @@ class InstitutionsDialog(private val callback: (toInstitution: TOInstitution) ->
 
         binding.institutionsDialogToolbar.apply {
             setNavigationOnClickListener { dismiss() }
-            setTitle(R.string.label_title_institutions_dialog)
         }
 
         binding.institutionsDialogRecyclerview.adapter = adapter
@@ -85,10 +71,6 @@ class InstitutionsDialog(private val callback: (toInstitution: TOInstitution) ->
                 )
             )
         )
-    }
-
-    fun show(manager: FragmentManager) {
-        super.show(manager, TAG)
     }
 
 }

@@ -18,21 +18,15 @@ class InstitutionsAdapter(
         private val onItemClick: (toInstitution: TOInstitution) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        private lateinit var toInstitution: TOInstitution
-
         init {
             itemView.setOnClickListener {
-                if (::toInstitution.isInitialized) {
-                    onItemClick(toInstitution)
-                }
+                binding.toInstitution?.let(onItemClick)
             }
         }
 
         fun bind(toInstitution: TOInstitution) {
-            this.toInstitution = toInstitution
-
-            binding.institutionItemName.text = toInstitution.name
-            binding.institutionItemAddress.text = toInstitution.toAddress.getCompleteAddress()
+            binding.toInstitution = toInstitution
+            binding.executePendingBindings()
         }
     }
 

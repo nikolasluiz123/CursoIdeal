@@ -11,31 +11,18 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import br.com.cursoideal.R
 import br.com.cursoideal.databinding.DownloadImageLinkDialogBinding
+import br.com.cursoideal.ui.dialog.base.AbstractFullScreenDialog
 import coil.imageLoader
 import coil.request.ImageRequest
 
-private const val TAG: String = "DownloadImageLinkDialog"
+class DownloadImageLinkDialog(private val callback: (drawable: Drawable?) -> Unit) : AbstractFullScreenDialog() {
 
-class DownloadImageLinkDialog(private val callback: (drawable: Drawable?) -> Unit) : DialogFragment() {
+    override val dialogTag: String = "DownloadImageLinkDialog"
 
     private var _binding: DownloadImageLinkDialogBinding? = null
     private val binding get() = _binding!!
 
     private var image: Drawable? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        setStyle(STYLE_NORMAL, R.style.AppTheme_FullScreenDialog)
-    }
-
-    override fun onStart() {
-        super.onStart()
-
-        val width = ViewGroup.LayoutParams.MATCH_PARENT
-        val height = ViewGroup.LayoutParams.MATCH_PARENT
-        dialog?.window?.setLayout(width, height)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,16 +60,11 @@ class DownloadImageLinkDialog(private val callback: (drawable: Drawable?) -> Uni
 
         binding.downloadImageLinkDialogToolbar.apply {
             setNavigationOnClickListener { dismiss() }
-            setTitle(R.string.label_title_download_imagem_link_dialog)
             setOnMenuItemClickListener {
                 callback(image)
                 dismiss()
                 true
             }
         }
-    }
-
-    fun show(manager: FragmentManager) {
-        super.show(manager, TAG)
     }
 }

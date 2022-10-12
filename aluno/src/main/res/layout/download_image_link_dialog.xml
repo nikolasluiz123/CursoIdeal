@@ -24,7 +24,8 @@
                 android:background="?attr/colorPrimary"
                 app:menu="@menu/menu_download_image_link_dialog"
                 app:navigationIcon="@drawable/ic_close_white"
-                app:popupTheme="@style/Theme.CursoIdeal.PopupOverlay" />
+                app:popupTheme="@style/Theme.CursoIdeal.PopupOverlay"
+                app:title="@string/label_title_download_imagem_link_dialog" />
 
         </com.google.android.material.appbar.AppBarLayout>
 

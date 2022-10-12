@@ -59,4 +59,7 @@
     <string name="institution_hint_input_public_place">Logradouro</string>
     <string name="institution_hint_input_complement">Complemento</string>
     <string name="label_content_description_end_icon_institution_cep">Pesquisar Informações de Endereço a Partir do Cep</string>
+    <string name="label_new_course">Novo Curso</string>
+    <string name="label_confirm">Confirmar</string>
+    <string name="label_title_maintenance_course_dialog">Novo Curso</string>
 </resources>
