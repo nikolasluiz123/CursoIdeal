@@ -39,12 +39,20 @@ class CoursesAdapter(
 
     override fun getItemCount(): Int = courses.size
 
-    // Método apenas para teste, substituir posteriormente por um método que receba
-    // Apenas uma instituição
-    fun insert(courses: List<TOCourse>) {
+    fun insert(toCourses: List<TOCourse>) {
         this.notifyItemRangeRemoved(0, this.courses.size)
         this.courses.clear()
-        this.courses.addAll(courses)
+        this.courses.addAll(toCourses)
         this.notifyItemInserted(this.courses.size)
+    }
+
+    fun insert(toCourse: TOCourse) {
+        this.notifyItemInserted(this.courses.size)
+        this.courses.add(toCourse)
+    }
+
+    fun update(toCourse: TOCourse) {
+        this.notifyItemChanged(this.courses.indexOf(toCourse))
+        this.courses[this.courses.indexOf(toCourse)] = toCourse
     }
 }

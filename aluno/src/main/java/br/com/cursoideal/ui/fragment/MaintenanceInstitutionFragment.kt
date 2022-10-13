@@ -16,7 +16,7 @@ class MaintenanceInstitutionFragment : AbstractSessionedFragment() {
     private var _binding: FragmentMaintenanceInstitutionBinding? = null
     private val binding get() = _binding!!
 
-    val args: MaintenanceInstitutionFragmentArgs by navArgs()
+    private val args: MaintenanceInstitutionFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,10 +34,6 @@ class MaintenanceInstitutionFragment : AbstractSessionedFragment() {
     private fun configureTabs() {
         configureViewPageAdapter()
         configureMediator()
-
-//        Posteriormente controlar o click e o scroll dinamicamente com esse código.
-//        binding.maintenanceCourseViewPager.isUserInputEnabled = false
-//        binding.maintenanceCourseTabLayout.getTabAt(1)?.view?.isEnabled = false
     }
 
     private fun configureMediator() {
@@ -58,7 +54,7 @@ class MaintenanceInstitutionFragment : AbstractSessionedFragment() {
         binding.maintenanceCourseViewPager.adapter = ViewPagerAdapter(
             listOf(
                 InstitutionTabFragment(args),
-                CourseTabFragment(args)
+                CourseTabFragment()
             ), this
         )
     }

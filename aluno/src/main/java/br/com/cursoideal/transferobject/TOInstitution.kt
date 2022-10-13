@@ -8,10 +8,10 @@ class TOInstitution(
     var toAddress: TOAddress = TOAddress(),
 ) : BaseTO(id) {
 
-    constructor(institution: Institution) : this(
-        institution.id,
+    constructor(id: String, institution: Institution) : this(
+        id,
         institution.name,
-        TOAddress(institution.address)
+        TOAddress(address = institution.address)
     )
 
 }

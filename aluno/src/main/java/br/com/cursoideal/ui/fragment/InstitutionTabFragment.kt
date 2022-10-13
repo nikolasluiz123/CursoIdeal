@@ -11,18 +11,17 @@ import br.com.cursoideal.databinding.FragmentInstitutionTabBinding
 import br.com.cursoideal.extensions.executeRequiredValidation
 import br.com.cursoideal.extensions.showSnackBar
 import br.com.cursoideal.transferobject.TOInstitution
-import br.com.cursoideal.ui.dialog.InstitutionsDialog
 import br.com.cursoideal.ui.fragment.base.AbstractSessionedFragment
 import br.com.cursoideal.ui.viewmodel.InstitutionViewModel
 import kotlinx.coroutines.launch
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class InstitutionTabFragment(private val args: MaintenanceInstitutionFragmentArgs) : AbstractSessionedFragment() {
 
     private var _binding: FragmentInstitutionTabBinding? = null
     private val binding get() = _binding!!
 
-    private val institutionViewModel: InstitutionViewModel by viewModel()
+    private val institutionViewModel: InstitutionViewModel by sharedViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,30 +41,26 @@ class InstitutionTabFragment(private val args: MaintenanceInstitutionFragmentArg
             binding.toInstitution = it
         }
 
-        binding.institutionLayoutName.setEndIconOnClickListener {
-            activity?.let { activity ->
-                InstitutionsDialog { toInstitution ->
-                    institutionViewModel.toInstitution.postValue(toInstitution)
-                }.show(activity.supportFragmentManager)
-            }
-        }
-
         binding.institutionLayoutCep.setEndIconOnClickListener {
             lifecycleScope.launch {
                 val cep = binding.institutionInputCep.text.toString()
+
                 institutionViewModel.getTOAddresBy(cep)?.let { toAddress ->
-                    if (institutionViewModel.toInstitution.value?.toAddress?.cep != toAddress.cep) {
-                        val newInstitution = TOInstitution()
-                        newInstitution.toAddress = toAddress
-                        institutionViewModel.toInstitution.postValue(newInstitution)
+
+                    institutionViewModel.toInstitution.value?.let { toInstitution ->
+                        if (toInstitution.toAddress.cep != toAddress.cep) {
+                            val newInstitution = TOInstitution(name = toInstitution.name)
+                            newInstitution.toAddress = toAddress
+                            institutionViewModel.toInstitution.postValue(newInstitution)
+                        }
                     }
                 }
             }
         }
 
         args.institutionId?.let { id ->
-            institutionViewModel.findById(id).observe(viewLifecycleOwner) { toInstitution ->
-                institutionViewModel.toInstitution.postValue(toInstitution)
+            institutionViewModel.findById(id).observe(viewLifecycleOwner) { response ->
+                institutionViewModel.toInstitution.postValue(response.data)
             }
         }
     }

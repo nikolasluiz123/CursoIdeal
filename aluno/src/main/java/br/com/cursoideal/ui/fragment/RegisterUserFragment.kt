@@ -42,13 +42,12 @@ class RegisterUserFragment : AbstractAuthenticableFragment() {
 
                 toUser.byteArrayPhoto = binding.imageViewUserPhoto.toByteArray()
 
-                authenticationViewModel.save(toUser).observe(viewLifecycleOwner) { resource ->
-                    if (resource.data) {
+                authenticationViewModel.save(toUser).observe(viewLifecycleOwner) { response ->
+                    if (response.success) {
                         view?.showSnackBar(getString(R.string.message_success_register_user))
                         navController.popBackStack()
                     } else {
-                        val errorMessage = resource.error
-                            ?: getString(R.string.generic_error_message_register_user)
+                        val errorMessage = response.error ?: getString(R.string.generic_error_message_register_user)
                         view?.showSnackBar(errorMessage)
                     }
                 }

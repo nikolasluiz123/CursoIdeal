@@ -12,8 +12,8 @@ class TOAddress(
     var complement: String = ""
 ) : BaseTO(id) {
 
-    constructor(address: Address) : this(
-        address.id,
+    constructor(id: String? = null, address: Address) : this(
+        id,
         address.cep,
         address.state,
         address.city,

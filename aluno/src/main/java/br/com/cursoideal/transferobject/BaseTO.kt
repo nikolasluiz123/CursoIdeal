@@ -1,3 +1,3 @@
 package br.com.cursoideal.transferobject
 
-open class BaseTO(val id: String? = null)
+open class BaseTO(var id: String? = null)

@@ -26,10 +26,6 @@
                 android:layout_margin="16dp"
                 android:hint="@string/institution_hint_input_name"
                 android:maxLength="255"
-                app:endIconCheckable="true"
-                app:endIconContentDescription="@string/label_content_description_end_icon_institution_name"
-                app:endIconDrawable="@drawable/ic_list_black"
-                app:endIconMode="custom"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">

@@ -7,17 +7,27 @@ import androidx.core.view.MenuProvider
 import androidx.lifecycle.Lifecycle
 import br.com.cursoideal.R
 import br.com.cursoideal.databinding.FragmentCourseTabBinding
-import br.com.cursoideal.transferobject.TOCourse
 import br.com.cursoideal.ui.adapter.CoursesAdapter
 import br.com.cursoideal.ui.dialog.MaintenanceCourseDialog
 import br.com.cursoideal.ui.fragment.base.AbstractSessionedFragment
+import br.com.cursoideal.ui.viewmodel.CourseViewModel
+import br.com.cursoideal.ui.viewmodel.InstitutionViewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class CourseTabFragment(private val args: MaintenanceInstitutionFragmentArgs) : AbstractSessionedFragment() {
+class CourseTabFragment : AbstractSessionedFragment() {
 
     private var _binding: FragmentCourseTabBinding? = null
     private val binding get() = _binding!!
 
     private val adapter by lazy { CoursesAdapter() }
+
+    private val institutionId: String? by lazy {
+        val institutionViewModel: InstitutionViewModel by sharedViewModel()
+        institutionViewModel.toInstitution.value?.id
+    }
+
+    private val courseViewModel: CourseViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,9 +45,20 @@ class CourseTabFragment(private val args: MaintenanceInstitutionFragmentArgs) : 
 
         adapter.onItemClick = { toCourse ->
             activity?.let { activity ->
-                MaintenanceCourseDialog(toCourse).show(activity.supportFragmentManager)
+                MaintenanceCourseDialog(
+                    toCourse = toCourse,
+                    institutionId = institutionId
+                ) { response ->
+
+                    if (response.success) {
+                        response.data?.let(adapter::update)
+                    }
+
+                }.show(activity.supportFragmentManager)
             }
         }
+
+        institutionId?.let { id -> courseViewModel.findBy(id).observe(viewLifecycleOwner) { response -> response.data?.let(adapter::insert) } }
     }
 
     private fun configureMenu() {
@@ -59,7 +80,13 @@ class CourseTabFragment(private val args: MaintenanceInstitutionFragmentArgs) : 
 
     private fun onAddCourse(): Boolean {
         activity?.let { activity ->
-            MaintenanceCourseDialog().show(activity.supportFragmentManager)
+            MaintenanceCourseDialog(institutionId = institutionId) { response ->
+
+                if (response.success) {
+                    response.data?.let(adapter::insert)
+                }
+
+            }.show(activity.supportFragmentManager)
         }
 
         return true

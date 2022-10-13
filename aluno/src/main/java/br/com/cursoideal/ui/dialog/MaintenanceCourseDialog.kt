@@ -5,12 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import br.com.cursoideal.databinding.MaintenanceCourseDialogBinding
+import br.com.cursoideal.repository.Response
 import br.com.cursoideal.transferobject.TOCourse
 import br.com.cursoideal.ui.dialog.base.AbstractFullScreenDialog
+import br.com.cursoideal.ui.fragment.MaintenanceInstitutionFragmentArgs
 import br.com.cursoideal.ui.viewmodel.CourseViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MaintenanceCourseDialog(private val toCourse: TOCourse = TOCourse()) : AbstractFullScreenDialog() {
+class MaintenanceCourseDialog(
+    private val toCourse: TOCourse = TOCourse(),
+    private val institutionId: String?,
+    private val callback: (response: Response<TOCourse>) -> Unit
+) :
+    AbstractFullScreenDialog() {
 
     override val dialogTag: String = "MaintenanceCourseDialog"
 
@@ -37,16 +44,21 @@ class MaintenanceCourseDialog(private val toCourse: TOCourse = TOCourse()) : Abs
             binding.toCourse = it
         }
 
+        courseViewModel.toCourse.postValue(toCourse)
+
         binding.institutionsDialogToolbar.apply {
             setNavigationOnClickListener { dismiss() }
             setOnMenuItemClickListener {
-                // Executar operações para salvar o curso
-                // Avisar se foi falvo com sucesso ou não
-                dismiss()
+                val value = courseViewModel.toCourse.value
+
+                if (value != null && institutionId != null) {
+                    courseViewModel.save(value, institutionId).observe(viewLifecycleOwner) {
+                        callback(it)
+                        dismiss()
+                    }
+                }
                 true
             }
         }
-
-        courseViewModel.toCourse.postValue(toCourse)
     }
 }

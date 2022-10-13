@@ -15,8 +15,8 @@ class FirebaseAuthenticationRepository(
     private val firebaseStorage: FirebaseStorage
 ) {
 
-    fun save(toUser: TOUser): LiveData<Resource<Boolean>> =
-        MutableLiveData<Resource<Boolean>>().apply {
+    fun save(toUser: TOUser): LiveData<ResponseVoid> =
+        MutableLiveData<ResponseVoid>().apply {
             firebaseAuthentication.createUserWithEmailAndPassword(
                 toUser.email.value!!,
                 toUser.password.value!!
@@ -42,9 +42,9 @@ class FirebaseAuthenticationRepository(
                         }
                     }
 
-                    value = Resource(
-                        taskCreateUser.isSuccessful,
-                        taskCreateUser.exception?.let(::getErrorMessageSave)
+                    value = ResponseVoid(
+                        success = taskCreateUser.isSuccessful,
+                        error = taskCreateUser.exception?.let(::getErrorMessageSave)
                     )
                 }
         }
@@ -56,11 +56,14 @@ class FirebaseAuthenticationRepository(
         else -> "Erro desconhecido"
     }
 
-    fun login(user: UserAuthentication): LiveData<Resource<Boolean>> =
-        MutableLiveData<Resource<Boolean>>().apply {
+    fun login(user: UserAuthentication): LiveData<ResponseVoid> =
+        MutableLiveData<ResponseVoid>().apply {
             firebaseAuthentication.signInWithEmailAndPassword(user.email, user.password)
                 .addOnCompleteListener { task ->
-                    value = Resource(task.isSuccessful, task.exception?.let(::getErrorMessageLogin))
+                    value = ResponseVoid(
+                        success = task.isSuccessful,
+                        error = task.exception?.let(::getErrorMessageLogin)
+                    )
                 }
         }
 

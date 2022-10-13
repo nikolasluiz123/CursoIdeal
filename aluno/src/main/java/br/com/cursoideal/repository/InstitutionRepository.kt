@@ -8,41 +8,43 @@ import br.com.cursoideal.service.viacep.ViaCepWebClient
 import br.com.cursoideal.transferobject.TOAddress
 import br.com.cursoideal.transferobject.TOInstitution
 import com.google.firebase.firestore.FirebaseFirestore
-import java.util.stream.Collectors
+import com.google.firebase.firestore.ktx.toObject
 
 class InstitutionRepository(
     private val firebaseFirestore: FirebaseFirestore,
     private val viaCepWebClient: ViaCepWebClient
 ) {
 
-    fun save(institution: Institution): LiveData<Resource<Boolean>> = MutableLiveData<Resource<Boolean>>().apply {
-        firebaseFirestore.collection(FirebaseCollections.INSTITUTIONS.value).document().set(institution).addOnCompleteListener { task ->
-            value = Resource(task.isSuccessful, task.exception?.message)
+    fun save(toInstitution: TOInstitution): LiveData<ResponseVoid> = MutableLiveData<ResponseVoid>().apply {
+        val institutionCollection = firebaseFirestore.collection(FirebaseCollections.INSTITUTIONS.value)
+        val document = toInstitution.id?.let(institutionCollection::document) ?: institutionCollection.document()
+
+        document.set(Institution(toInstitution)).addOnCompleteListener { task ->
+            value = ResponseVoid(success = task.isSuccessful, error = task.exception?.message)
         }
     }
 
-    fun findAll(): LiveData<List<TOInstitution>> = MutableLiveData<List<TOInstitution>>().apply {
-        val list: MutableList<Institution> = mutableListOf()
+    fun findAll(): LiveData<Response<List<TOInstitution>>> = MutableLiveData<Response<List<TOInstitution>>>().apply {
+        val list: MutableList<TOInstitution> = mutableListOf()
 
         firebaseFirestore.collection(FirebaseCollections.INSTITUTIONS.value).get().addOnSuccessListener { querySnapshot ->
+
             querySnapshot.documents.forEach { document ->
-                document.toObject(Institution::class.java)?.let { institution ->
-                    institution.id = document.id
-                    list.add(institution)
+                document.toObject<Institution>()?.let { institution ->
+                    list.add(TOInstitution(document.id, institution))
                 }
             }
+            value = Response(true, list)
 
-            value = list.stream().map(::TOInstitution).collect(Collectors.toList())
-        }
+        }.addOnFailureListener { value = Response(false, error = it.message) }
     }
 
-    fun findById(id: String): LiveData<TOInstitution?> = MutableLiveData<TOInstitution>().apply {
+    fun findById(id: String): LiveData<Response<TOInstitution>> = MutableLiveData<Response<TOInstitution>>().apply {
         firebaseFirestore.collection(FirebaseCollections.INSTITUTIONS.value).document(id).get().addOnSuccessListener { document ->
             document.toObject(Institution::class.java)?.let { institution ->
-                institution.id = document.id
-                value = TOInstitution(institution)
+                value = Response(true, TOInstitution(document.id, institution))
             }
-        }
+        }.addOnFailureListener { value = Response(false, error = it.message) }
     }
 
     suspend fun getTOAddresBy(cep: String): TOAddress? = viaCepWebClient.getTOAddresBy(cep)

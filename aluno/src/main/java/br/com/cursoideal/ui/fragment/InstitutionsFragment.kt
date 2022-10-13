@@ -41,9 +41,7 @@ class InstitutionsFragment : AbstractSessionedFragment() {
             navController.navigate(InstitutionsFragmentDirections.actionInstitutionsFragmentToMaintenanceCourceFragment(toInstitution.id))
         }
 
-        institutionViewModel.findAll().observe(viewLifecycleOwner) { institutions ->
-            adapter.insert(institutions)
-        }
+        institutionViewModel.findAll().observe(viewLifecycleOwner) { response -> response.data?.let(adapter::insert) }
 
     }
 

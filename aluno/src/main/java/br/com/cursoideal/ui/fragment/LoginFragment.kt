@@ -41,12 +41,11 @@ class LoginFragment : AbstractAuthenticableFragment() {
         binding.loginButton.setOnClickListener {
             toUser.getUserAuthentication()?.let { user ->
                 if (validate(user)) {
-                    authenticationViewModel.login(user).observe(viewLifecycleOwner) { resource ->
-                        if (resource.data) {
+                    authenticationViewModel.login(user).observe(viewLifecycleOwner) { response ->
+                        if (response.success) {
                             navController.navigate(LoginFragmentDirections.actionLoginFragmentToInstitutionsFragment())
                         } else {
-                            val errorMessage =
-                                resource.error ?: getString(R.string.generic_error_message_login)
+                            val errorMessage = response.error ?: getString(R.string.generic_error_message_login)
                             view?.showSnackBar(errorMessage)
                         }
                     }
