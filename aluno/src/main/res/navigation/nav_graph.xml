@@ -101,6 +101,20 @@
         android:id="@+id/coursesFragment"
         android:name="br.com.cursoideal.ui.fragment.CoursesFragment"
         android:label="@string/title_courses_fragment"
-        tools:layout="@layout/fragment_courses" />
+        tools:layout="@layout/fragment_courses">
+        <action
+            android:id="@+id/action_coursesFragment_to_detailsCourseFragment"
+            app:destination="@id/detailsCourseFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailsCourseFragment"
+        android:name="br.com.cursoideal.ui.fragment.DetailsCourseFragment"
+        android:label="@string/label_title_details_course_fragment"
+        tools:layout="@layout/fragment_details_course" />
 
 </navigation>

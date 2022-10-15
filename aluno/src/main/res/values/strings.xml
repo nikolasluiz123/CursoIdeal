@@ -73,4 +73,5 @@
     <string name="title_home_fragment">Curso Ideal</string>
     <string name="title_courses_fragment">Cursos</string>
     <string name="label_home_message">Bem-Vindo, aqui você encontrará o curso ideal para você</string>
+    <string name="label_title_details_course_fragment">Detalhes</string>
 </resources>
