@@ -20,5 +20,7 @@ class InstitutionViewModel(
 
     fun findById(id: String): LiveData<Response<TOInstitution>> = institutionRepository.findById(id)
 
+    fun delete(id: String): LiveData<ResponseVoid> = institutionRepository.delete(id)
+
     suspend fun getTOAddresBy(cep: String): TOAddress? = institutionRepository.getTOAddresBy(cep)
 }

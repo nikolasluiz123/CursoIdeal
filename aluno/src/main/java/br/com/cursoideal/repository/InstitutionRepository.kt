@@ -47,5 +47,32 @@ class InstitutionRepository(
         }.addOnFailureListener { value = Response(false, error = it.message) }
     }
 
+    /**
+     * Método que utiliza uma implementação não recomendada em dispositivos móveis.
+     * Essa implementação deleta os cursos da instituição que foi deletada, isso deveria
+     * ser feito via CloudFunction, porém, este é um recursos pago.
+     *
+     * https://stackoverflow.com/questions/52142186/how-to-delete-firestore-collection-from-android
+     */
+    fun delete(id: String): LiveData<ResponseVoid> = MutableLiveData<ResponseVoid>().apply {
+        val document = firebaseFirestore.collection(FirebaseCollections.INSTITUTIONS.value).document(id)
+        var deleted = 0
+
+        document.delete().addOnCompleteListener { task ->
+            ResponseVoid(task.isSuccessful, task.exception?.message)
+
+            document.collection(FirebaseCollections.COURSES.value).limit(10).get().addOnCompleteListener { querySnapshot ->
+                querySnapshot.result.forEach { document ->
+                    document.reference.delete()
+                    deleted++
+                }
+
+                if (deleted >= 10) {
+                    delete(id)
+                }
+            }
+        }
+    }
+
     suspend fun getTOAddresBy(cep: String): TOAddress? = viaCepWebClient.getTOAddresBy(cep)
 }

@@ -45,4 +45,11 @@ class InstitutionsAdapter(
         this.institutions.addAll(institutions)
         this.notifyItemInserted(this.institutions.size)
     }
+
+    fun getItemIdBy(position: Int): String? = this.institutions[position].id
+
+    fun delete(position: Int) {
+        this.notifyItemRemoved(position)
+        this.institutions.removeAt(position)
+    }
 }

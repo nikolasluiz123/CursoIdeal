@@ -66,4 +66,6 @@
 
     <string name="required_message">O campo %s é obrigatório</string>
     <string name="message_save_institution">Instituição Salva com Sucesso</string>
+    <string name="title_menu_course_item_remover">Remover</string>
+    <string name="label_context_menu_course_item_remove">Remover</string>
 </resources>

@@ -19,20 +19,37 @@
         android:clickable="true"
         app:cardElevation="8dp">
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:padding="8dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/course_item_button_menu"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                app:icon="@drawable/ic_more_options_black"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
+                app:iconTint="#7B7B7B"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/course_item_label_nome"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="SpeakableTextPresentCheck" />
 
             <TextView
                 android:id="@+id/course_item_label_nome"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
                 android:text="Nome"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toStartOf="@id/course_item_label_mensalidade"
-                app:layout_constraintHorizontal_weight="0.7"
+                app:layout_constraintEnd_toStartOf="@id/course_item_button_menu"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -42,8 +59,7 @@
                 android:layout_height="wrap_content"
                 android:text="@{toCourse.name}"
                 android:textColor="@color/black"
-                app:layout_constraintEnd_toStartOf="@id/course_item_mensalidade"
-                app:layout_constraintHorizontal_weight="0.7"
+                app:layout_constraintEnd_toEndOf="@id/course_item_label_nome"
                 app:layout_constraintStart_toStartOf="@id/course_item_label_nome"
                 app:layout_constraintTop_toBottomOf="@id/course_item_label_nome"
                 tools:text="Ciência da Computação" />
@@ -52,27 +68,23 @@
                 android:id="@+id/course_item_label_mensalidade"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
                 android:text="Mensalidade"
-                android:textAlignment="textEnd"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_weight="0.3"
-                app:layout_constraintStart_toEndOf="@id/course_item_label_nome"
-                app:layout_constraintTop_toTopOf="@id/course_item_label_nome" />
+                app:layout_constraintEnd_toEndOf="@id/course_item_label_nome"
+                app:layout_constraintStart_toStartOf="@id/course_item_label_nome"
+                app:layout_constraintTop_toBottomOf="@id/course_item_instituicao" />
 
             <TextView
                 android:id="@+id/course_item_mensalidade"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:text="@{toCourse.value}"
-                android:textAlignment="textEnd"
                 android:textColor="@color/green"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/course_item_label_mensalidade"
-                app:layout_constraintHorizontal_weight="0.3"
-                app:layout_constraintStart_toEndOf="@id/course_item_instituicao"
+                app:layout_constraintStart_toStartOf="@id/course_item_label_mensalidade"
                 app:layout_constraintTop_toBottomOf="@id/course_item_label_mensalidade"
                 tools:text="R$ 1400,00" />
 

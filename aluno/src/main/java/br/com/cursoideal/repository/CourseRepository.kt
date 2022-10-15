@@ -37,4 +37,14 @@ class CourseRepository(private val firebaseFirestore: FirebaseFirestore) {
         }.addOnFailureListener { value = Response(false, error = it.message) }
     }
 
+    fun delete(institutionId: String, courseId: String): LiveData<ResponseVoid> = MutableLiveData<ResponseVoid>().apply {
+        val institutionsCollection = firebaseFirestore.collection(FirebaseCollections.INSTITUTIONS.value)
+        val coursesCollection = institutionsCollection.document(institutionId).collection(FirebaseCollections.COURSES.value)
+        val document = coursesCollection.document(courseId)
+
+        document.delete().addOnCompleteListener { task ->
+            value = ResponseVoid(task.isSuccessful, task.exception?.message)
+        }
+    }
+
 }

@@ -5,6 +5,8 @@ import android.view.*
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.lifecycle.Lifecycle
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import br.com.cursoideal.R
 import br.com.cursoideal.databinding.FragmentInstitutionsBinding
 import br.com.cursoideal.ui.adapter.InstitutionsAdapter
@@ -36,6 +38,22 @@ class InstitutionsFragment : AbstractSessionedFragment() {
         configureMenu()
 
         binding.institutionsFragmentRecyclerview.adapter = adapter
+
+        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+
+            override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                val itemId = adapter.getItemIdBy(position)
+
+                adapter.delete(position)
+                itemId?.let(institutionViewModel::delete)
+            }
+
+        }).attachToRecyclerView(binding.institutionsFragmentRecyclerview)
 
         adapter.onItemClick = { toInstitution ->
             navController.navigate(InstitutionsFragmentDirections.actionInstitutionsFragmentToMaintenanceCourceFragment(toInstitution.id))

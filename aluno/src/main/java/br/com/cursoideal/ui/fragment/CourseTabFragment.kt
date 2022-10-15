@@ -58,7 +58,39 @@ class CourseTabFragment : AbstractSessionedFragment() {
             }
         }
 
-        institutionId?.let { id -> courseViewModel.findBy(id).observe(viewLifecycleOwner) { response -> response.data?.let(adapter::insert) } }
+        adapter.onRemoveItemClick = { courseId, position ->
+            var succcess = false
+
+            institutionId?.let { institutionId ->
+                courseViewModel.delete(institutionId, courseId).observe(viewLifecycleOwner) { response ->
+                    succcess = response.success
+
+                    if (succcess) {
+                        adapter.delete(position)
+                    }
+                }
+            }
+
+            succcess
+        }
+
+        institutionId?.let { id ->
+            courseViewModel.findBy(id).observe(viewLifecycleOwner) { response ->
+                response.data?.let(adapter::insert)
+            }
+        }
+    }
+
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.context_menu_course_item_delete -> onRemoveCourse()
+        }
+
+        return super.onContextItemSelected(item)
+    }
+
+    private fun onRemoveCourse() {
+
     }
 
     private fun configureMenu() {
