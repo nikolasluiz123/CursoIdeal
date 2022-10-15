@@ -68,4 +68,9 @@
     <string name="message_save_institution">Instituição Salva com Sucesso</string>
     <string name="title_menu_course_item_remover">Remover</string>
     <string name="label_context_menu_course_item_remove">Remover</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_home_fragment">Curso Ideal</string>
+    <string name="title_courses_fragment">Cursos</string>
+    <string name="label_home_message">Bem-Vindo, aqui você encontrará o curso ideal para você</string>
 </resources>
