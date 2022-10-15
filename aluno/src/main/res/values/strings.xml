@@ -74,4 +74,9 @@
     <string name="title_courses_fragment">Cursos</string>
     <string name="label_home_message">Bem-Vindo, aqui você encontrará o curso ideal para você</string>
     <string name="label_title_details_course_fragment">Detalhes</string>
+    <string name="label_institution">Instituição</string>
+    <string name="label_course_name">Nome do Curso</string>
+    <string name="label_monthly_payment">Mensalidade</string>
+    <string name="label_rating">Avaliação</string>
+    <string name="label_address">Endereço</string>
 </resources>

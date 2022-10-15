@@ -19,7 +19,7 @@
                 <item
                     android:id="@+id/menu_item_courses_evaluation"
                     android:checkable="true"
-                    android:icon="@drawable/ic_star"
+                    android:icon="@drawable/ic_star_text_color"
                     android:title="@string/menu_item_coruses_evaluation" />
 
                 <item
