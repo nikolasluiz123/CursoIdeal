@@ -17,7 +17,7 @@
 
         <TextView
             android:id="@+id/complete_infos_course_item_label_institution"
-            style="@style/text_view_label"
+            style="@style/text_view_item_list_label"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/label_institution"
@@ -27,7 +27,7 @@
 
         <TextView
             android:id="@+id/complete_infos_course_item_value_institution"
-            style="@style/text_view_value"
+            style="@style/text_view_item_list_value"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="@id/complete_infos_course_item_label_institution"
@@ -37,7 +37,7 @@
 
         <TextView
             android:id="@+id/complete_infos_course_item_label_course_name"
-            style="@style/text_view_label"
+            style="@style/text_view_item_list_label"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -48,7 +48,7 @@
 
         <TextView
             android:id="@+id/complete_infos_course_item_value_course_name"
-            style="@style/text_view_value"
+            style="@style/text_view_item_list_value"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="@id/complete_infos_course_item_label_course_name"
@@ -58,7 +58,7 @@
 
         <TextView
             android:id="@+id/complete_infos_course_item_label_monthly_payment"
-            style="@style/text_view_label"
+            style="@style/text_view_item_list_label"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -71,7 +71,7 @@
 
         <TextView
             android:id="@+id/complete_infos_course_item_value_monthly_payment"
-            style="@style/text_view_value"
+            style="@style/text_view_item_list_value"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -83,7 +83,7 @@
 
         <TextView
             android:id="@+id/complete_infos_course_item_label_rating"
-            style="@style/text_view_label"
+            style="@style/text_view_item_list_label"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/label_rating"
@@ -95,7 +95,7 @@
 
         <TextView
             android:id="@+id/complete_infos_course_item_value_rating"
-            style="@style/text_view_value"
+            style="@style/text_view_item_list_value"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textAlignment="textEnd"
@@ -109,7 +109,7 @@
 
         <TextView
             android:id="@+id/complete_infos_course_item_label_address"
-            style="@style/text_view_label"
+            style="@style/text_view_item_list_label"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -120,7 +120,7 @@
 
         <TextView
             android:id="@+id/complete_infos_course_item_value_address"
-            style="@style/text_view_value"
+            style="@style/text_view_item_list_value"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="@id/complete_infos_course_item_label_address"

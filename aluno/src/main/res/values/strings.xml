@@ -79,4 +79,9 @@
     <string name="label_monthly_payment">Mensalidade</string>
     <string name="label_rating">Avaliação</string>
     <string name="label_address">Endereço</string>
+    <string name="label_title_institution_infos">Informações da Instituição</string>
+    <string name="label_title_course_infos">Informações do Curso</string>
+    <string name="label_modality">Modalidade</string>
+    <string name="label_duration">Duração</string>
+    <string name="course_infos_tab_label_more_informations">Para mais informações, visite o site da instituição</string>
 </resources>
