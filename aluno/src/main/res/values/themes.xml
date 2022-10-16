@@ -27,6 +27,11 @@
         <item name="android:windowBackground">@android:color/white</item>
     </style>
 
+    <style name="rating_bar_small_indicator" parent="Widget.AppCompat.RatingBar.Small">
+        <item name="android:progressTint">#f9d71c</item>
+        <item name="android:secondaryProgressTint">#c2a505</item>
+    </style>
+    
     <style name="text_view_item_list_label">
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/label_text_color</item>
