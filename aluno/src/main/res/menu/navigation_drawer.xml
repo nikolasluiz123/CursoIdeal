@@ -17,12 +17,6 @@
                     android:title="@string/menu_item_user_profile" />
 
                 <item
-                    android:id="@+id/menu_item_courses_evaluation"
-                    android:checkable="true"
-                    android:icon="@drawable/ic_star_text_color"
-                    android:title="@string/menu_item_coruses_evaluation" />
-
-                <item
                     android:id="@+id/menu_item_favorite_courses"
                     android:checkable="true"
                     android:icon="@drawable/ic_favorite_black"
@@ -33,24 +27,24 @@
     </group>
 
     <group
-        android:id="@+id/group_courses"
+        android:id="@+id/group_view"
         android:checkableBehavior="single">
 
         <item
-            android:id="@+id/menu_item_group_courses"
-            android:title="@string/label_title_courses">
+            android:id="@+id/menu_item_group_institutions_list"
+            android:title="@string/label_title_institutions_list">
             <menu>
                 <item
-                    android:id="@+id/menu_item_cursos"
+                    android:id="@+id/menu_item_institutions"
                     android:checkable="true"
                     android:icon="@drawable/ic_list_black"
-                    android:title="@string/menu_item_cursos_title" />
+                    android:title="@string/menu_item_institutions_title" />
 
                 <item
-                    android:id="@+id/menu_item_cadastro_cursos"
+                    android:id="@+id/menu_item_courses"
                     android:checkable="true"
-                    android:icon="@drawable/ic_add_list_black"
-                    android:title="@string/menu_item_cadastro_cursos_title" />
+                    android:icon="@drawable/ic_list_black"
+                    android:title="@string/menu_item_courses_title" />
             </menu>
         </item>
     </group>

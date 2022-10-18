@@ -13,6 +13,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import br.com.cursoideal.NavGraphDirections
 import br.com.cursoideal.R
 import br.com.cursoideal.databinding.ActivityMainBinding
+import br.com.cursoideal.ui.fragment.HomeFragmentDirections
 import br.com.cursoideal.ui.viewmodel.AppStateViewModel
 import br.com.cursoideal.ui.viewmodel.AuthenticationViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -44,10 +45,9 @@ class MainActivity : AppCompatActivity() {
         binding.navigationView.setNavigationItemSelectedListener {
             when(it.itemId) {
                 R.id.menu_item_user_profile -> onUserProfileSelected()
-                R.id.menu_item_courses_evaluation -> onCoursesEvaluationSelected()
                 R.id.menu_item_favorite_courses -> onFavoriteCoursesSelected()
-                R.id.menu_item_cursos -> onCursosSelected()
-                R.id.menu_item_cadastro_cursos -> onCadastroCursosSelected()
+                R.id.menu_item_institutions -> onInstitutionsSelected()
+                R.id.menu_item_courses -> onCoursesSelected()
                 R.id.menu_item_logout -> onLogoutSelected()
                 R.id.menu_item_settings -> onSettingsSelected()
                 else -> true
@@ -79,19 +79,17 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    private fun onCoursesEvaluationSelected(): Boolean {
-        return true
-    }
-
     private fun onFavoriteCoursesSelected(): Boolean {
         return true
     }
 
-    private fun onCursosSelected(): Boolean {
+    private fun onInstitutionsSelected(): Boolean {
+        navController.navigate(HomeFragmentDirections.actionHomeFragmentToInstitutionsFragment())
         return true
     }
 
-    private fun onCadastroCursosSelected(): Boolean {
+    private fun onCoursesSelected(): Boolean {
+        navController.navigate(HomeFragmentDirections.actionHomeFragmentToCoursesFragment())
         return true
     }
 
