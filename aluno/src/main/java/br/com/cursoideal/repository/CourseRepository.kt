@@ -1,5 +1,6 @@
 package br.com.cursoideal.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import br.com.cursoideal.model.Course
@@ -52,15 +53,31 @@ class CourseRepository(private val firebaseFirestore: FirebaseFirestore) {
 
     fun findAll(): LiveData<Response<List<TOCourseComplete>>> = MutableLiveData<Response<List<TOCourseComplete>>>().apply {
         val courses = mutableListOf<TOCourseComplete>()
+        var succsess = true
+        var error: String?
 
-        firebaseFirestore.collection(FirebaseCollections.INSTITUTIONS.value).get().addOnCompleteListener { intitutionQuerySnapshot ->
-            intitutionQuerySnapshot.result.forEach { institutionDocument ->
-                val toInstitution = TOInstitution(institutionDocument.id, institutionDocument.toObject<Institution>())
+        firebaseFirestore.collection(FirebaseCollections.INSTITUTIONS.value).get().addOnCompleteListener { institutionQuerySnapshot ->
+            institutionQuerySnapshot.result.forEach {  institutionDocument ->
+                val institution = institutionDocument.toObject<Institution>()
+                val toInstitution = TOInstitution(institutionDocument.id, institution)
 
-                institutionDocument.reference.collection(FirebaseCollections.COURSES.value).get().addOnCompleteListener { courseQuerySnapshot ->
-                    courseQuerySnapshot.result.forEach { courseDocument ->
-                        val toCourse = TOCourse(courseDocument.id, courseDocument.toObject<Course>())
-                        courses.add(TOCourseComplete(toInstitution, toCourse))
+                value = Response(institutionQuerySnapshot.isSuccessful, courses, institutionQuerySnapshot.exception?.message)
+
+                if (institutionQuerySnapshot.isSuccessful) {
+                    institutionDocument.reference.collection(FirebaseCollections.COURSES.value).get().addOnCompleteListener { courseQuerySnapshot ->
+
+                        value = Response(courseQuerySnapshot.isSuccessful, courses, courseQuerySnapshot.exception?.message)
+
+                        if (courseQuerySnapshot.isSuccessful) {
+                            courseQuerySnapshot.result.forEach { courseDocument ->
+                                val course = courseDocument.toObject<Course>()
+                                val toCourse = TOCourse(courseDocument.id, course)
+                                val toCourseComplete = TOCourseComplete(toInstitution, toCourse)
+                                courses.add(toCourseComplete)
+                            }
+
+                            value = Response(true, courses)
+                        }
                     }
                 }
             }

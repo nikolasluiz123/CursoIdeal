@@ -1,133 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    android:checkable="true"
-    android:clickable="true"
-    app:cardElevation="8dp">
+<layout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+
+        <import type="br.com.cursoideal.converter.Converter" />
+
+        <variable
+            name="toCourseComplete"
+            type="br.com.cursoideal.transferobject.TOCourseComplete" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:layout_margin="8dp"
+        android:checkable="true"
+        android:clickable="true"
+        app:cardElevation="8dp">
 
-        <TextView
-            android:id="@+id/complete_infos_course_item_label_institution"
-            style="@style/text_view_item_list_label"
-            android:layout_width="0dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/label_institution"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:padding="8dp">
 
-        <TextView
-            android:id="@+id/complete_infos_course_item_value_institution"
-            style="@style/text_view_item_list_value"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@id/complete_infos_course_item_label_institution"
-            app:layout_constraintStart_toStartOf="@id/complete_infos_course_item_label_institution"
-            app:layout_constraintTop_toBottomOf="@id/complete_infos_course_item_label_institution"
-            tools:text="Universidade Regional de Blumenau (FURB)" />
+            <TextView
+                android:id="@+id/complete_infos_course_item_label_institution"
+                style="@style/text_view_item_list_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/label_institution"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/complete_infos_course_item_label_course_name"
-            style="@style/text_view_item_list_label"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@string/label_course_name"
-            app:layout_constraintEnd_toEndOf="@id/complete_infos_course_item_value_institution"
-            app:layout_constraintStart_toStartOf="@id/complete_infos_course_item_value_institution"
-            app:layout_constraintTop_toBottomOf="@id/complete_infos_course_item_value_institution" />
+            <TextView
+                android:id="@+id/complete_infos_course_item_value_institution"
+                style="@style/text_view_item_list_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{toCourseComplete.toInstitution.name}"
+                app:layout_constraintEnd_toEndOf="@id/complete_infos_course_item_label_institution"
+                app:layout_constraintStart_toStartOf="@id/complete_infos_course_item_label_institution"
+                app:layout_constraintTop_toBottomOf="@id/complete_infos_course_item_label_institution"
+                tools:text="Universidade Regional de Blumenau (FURB)" />
 
-        <TextView
-            android:id="@+id/complete_infos_course_item_value_course_name"
-            style="@style/text_view_item_list_value"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@id/complete_infos_course_item_label_course_name"
-            app:layout_constraintStart_toStartOf="@id/complete_infos_course_item_label_course_name"
-            app:layout_constraintTop_toBottomOf="@id/complete_infos_course_item_label_course_name"
-            tools:text="Análise e Desenvolvimento de Sistemas" />
+            <TextView
+                android:id="@+id/complete_infos_course_item_label_course_name"
+                style="@style/text_view_item_list_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/label_course_name"
+                app:layout_constraintEnd_toEndOf="@id/complete_infos_course_item_value_institution"
+                app:layout_constraintStart_toStartOf="@id/complete_infos_course_item_value_institution"
+                app:layout_constraintTop_toBottomOf="@id/complete_infos_course_item_value_institution" />
 
-        <TextView
-            android:id="@+id/complete_infos_course_item_label_monthly_payment"
-            style="@style/text_view_item_list_label"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="8dp"
-            android:text="@string/label_monthly_payment"
-            app:layout_constraintEnd_toStartOf="@id/complete_infos_course_item_label_rating"
-            app:layout_constraintHorizontal_weight="0.8"
-            app:layout_constraintStart_toStartOf="@id/complete_infos_course_item_value_course_name"
-            app:layout_constraintTop_toBottomOf="@id/complete_infos_course_item_value_course_name" />
+            <TextView
+                android:id="@+id/complete_infos_course_item_value_course_name"
+                style="@style/text_view_item_list_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{toCourseComplete.toCourse.name}"
+                app:layout_constraintEnd_toEndOf="@id/complete_infos_course_item_label_course_name"
+                app:layout_constraintStart_toStartOf="@id/complete_infos_course_item_label_course_name"
+                app:layout_constraintTop_toBottomOf="@id/complete_infos_course_item_label_course_name"
+                tools:text="Análise e Desenvolvimento de Sistemas" />
 
-        <TextView
-            android:id="@+id/complete_infos_course_item_value_monthly_payment"
-            style="@style/text_view_item_list_money_value"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toStartOf="@id/complete_infos_course_item_value_rating"
-            app:layout_constraintHorizontal_weight="0.8"
-            app:layout_constraintStart_toStartOf="@id/complete_infos_course_item_label_monthly_payment"
-            app:layout_constraintTop_toBottomOf="@id/complete_infos_course_item_label_monthly_payment"
-            tools:text="R$ 1400,00" />
+            <TextView
+                android:id="@+id/complete_infos_course_item_label_monthly_payment"
+                style="@style/text_view_item_list_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/label_monthly_payment"
+                app:layout_constraintEnd_toStartOf="@id/complete_infos_course_item_label_rating"
+                app:layout_constraintHorizontal_weight="0.8"
+                app:layout_constraintStart_toStartOf="@id/complete_infos_course_item_value_course_name"
+                app:layout_constraintTop_toBottomOf="@id/complete_infos_course_item_value_course_name" />
 
-        <TextView
-            android:id="@+id/complete_infos_course_item_label_rating"
-            style="@style/text_view_item_list_label"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/label_rating"
-            android:textAlignment="textEnd"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_weight="0.2"
-            app:layout_constraintStart_toEndOf="@id/complete_infos_course_item_label_monthly_payment"
-            app:layout_constraintTop_toTopOf="@id/complete_infos_course_item_label_monthly_payment" />
+            <TextView
+                android:id="@+id/complete_infos_course_item_value_monthly_payment"
+                style="@style/text_view_item_list_money_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="@{Converter.doubleToStringMoneyValue(toCourseComplete.toCourse.value)}"
+                app:layout_constraintEnd_toStartOf="@id/complete_infos_course_item_value_rating"
+                app:layout_constraintHorizontal_weight="0.8"
+                app:layout_constraintStart_toStartOf="@id/complete_infos_course_item_label_monthly_payment"
+                app:layout_constraintTop_toBottomOf="@id/complete_infos_course_item_label_monthly_payment"
+                tools:text="R$ 1400,00" />
 
-        <TextView
-            android:id="@+id/complete_infos_course_item_value_rating"
-            style="@style/text_view_item_list_value"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textAlignment="textEnd"
-            app:drawableEndCompat="@drawable/ic_star_rate_12"
-            app:drawableTint="@color/value_text_color"
-            app:layout_constraintEnd_toEndOf="@id/complete_infos_course_item_label_rating"
-            app:layout_constraintHorizontal_weight="0.2"
-            app:layout_constraintStart_toEndOf="@id/complete_infos_course_item_value_monthly_payment"
-            app:layout_constraintTop_toBottomOf="@id/complete_infos_course_item_label_rating"
-            tools:text="3" />
+            <TextView
+                android:id="@+id/complete_infos_course_item_label_rating"
+                style="@style/text_view_item_list_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/label_rating"
+                android:textAlignment="textEnd"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_weight="0.2"
+                app:layout_constraintStart_toEndOf="@id/complete_infos_course_item_label_monthly_payment"
+                app:layout_constraintTop_toTopOf="@id/complete_infos_course_item_label_monthly_payment" />
 
-        <TextView
-            android:id="@+id/complete_infos_course_item_label_address"
-            style="@style/text_view_item_list_label"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@string/label_address"
-            app:layout_constraintEnd_toEndOf="@id/complete_infos_course_item_value_rating"
-            app:layout_constraintStart_toStartOf="@id/complete_infos_course_item_value_monthly_payment"
-            app:layout_constraintTop_toBottomOf="@id/complete_infos_course_item_value_monthly_payment" />
+            <TextView
+                android:id="@+id/complete_infos_course_item_value_rating"
+                style="@style/text_view_item_list_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{Converter.intToString(toCourseComplete.toCourse.rating)}"
+                android:textAlignment="textEnd"
+                app:drawableEndCompat="@drawable/ic_star_rate_12"
+                app:drawableTint="@color/value_text_color"
+                app:layout_constraintEnd_toEndOf="@id/complete_infos_course_item_label_rating"
+                app:layout_constraintHorizontal_weight="0.2"
+                app:layout_constraintStart_toEndOf="@id/complete_infos_course_item_value_monthly_payment"
+                app:layout_constraintTop_toBottomOf="@id/complete_infos_course_item_label_rating"
+                tools:text="3" />
 
-        <TextView
-            android:id="@+id/complete_infos_course_item_value_address"
-            style="@style/text_view_item_list_value"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@id/complete_infos_course_item_label_address"
-            app:layout_constraintStart_toStartOf="@id/complete_infos_course_item_label_address"
-            app:layout_constraintTop_toBottomOf="@id/complete_infos_course_item_label_address"
-            tools:text="R. Antônio da Veiga, 140 - Itoupava Seca, Blumenau - SC" />
+            <TextView
+                android:id="@+id/complete_infos_course_item_label_address"
+                style="@style/text_view_item_list_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/label_address"
+                app:layout_constraintEnd_toEndOf="@id/complete_infos_course_item_value_rating"
+                app:layout_constraintStart_toStartOf="@id/complete_infos_course_item_value_monthly_payment"
+                app:layout_constraintTop_toBottomOf="@id/complete_infos_course_item_value_monthly_payment" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/complete_infos_course_item_value_address"
+                style="@style/text_view_item_list_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{toCourseComplete.toInstitution.toAddress.completeAddress}"
+                app:layout_constraintEnd_toEndOf="@id/complete_infos_course_item_label_address"
+                app:layout_constraintStart_toStartOf="@id/complete_infos_course_item_label_address"
+                app:layout_constraintTop_toBottomOf="@id/complete_infos_course_item_label_address"
+                tools:text="R. Antônio da Veiga, 140 - Itoupava Seca, Blumenau - SC" />
 
-</com.google.android.material.card.MaterialCardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

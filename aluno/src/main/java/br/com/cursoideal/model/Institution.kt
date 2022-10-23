@@ -2,7 +2,7 @@ package br.com.cursoideal.model
 
 import br.com.cursoideal.transferobject.TOInstitution
 
-class Institution(
+data class Institution(
     val name: String = "",
     val address: Address = Address()
 ) {
