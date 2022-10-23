@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'com.google.devtools.ksp'
+    id 'kotlin-kapt'
     id 'com.google.gms.google-services'
     id 'androidx.navigation.safeargs.kotlin'
 }
@@ -78,12 +79,12 @@ dependencies {
     implementation "io.insert-koin:koin-androidx-navigation:$koin_version"
 
     // KSP
-    implementation "com.google.devtools.ksp:symbol-processing-api:1.7.10-1.0.6"
+    implementation "com.google.devtools.ksp:symbol-processing-api:1.7.20-1.0.6"
 
     // Default
     implementation "androidx.core:core-ktx:1.9.0"
     implementation "androidx.appcompat:appcompat:1.5.1"
-    implementation "com.google.android.material:material:1.6.1"
+    implementation "com.google.android.material:material:1.7.0"
     implementation "androidx.constraintlayout:constraintlayout:2.1.4"
     implementation "androidx.navigation:navigation-fragment-ktx:2.5.2"
     implementation "androidx.navigation:navigation-ui-ktx:2.5.2"

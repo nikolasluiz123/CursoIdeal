@@ -3,9 +3,12 @@
 
     <data>
 
+        <import type="br.com.cursoideal.converter.Converter" />
+
         <variable
             name="toCourse"
             type="br.com.cursoideal.transferobject.TOCourse" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -73,9 +76,50 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
-                android:text="@={toCourse.value}" />
+                android:text="@={Converter.doubleToString(toCourse.value)}" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/maintenance_course_dialog_layout_modality"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="Modalidade"
+            android:maxLength="255"
+            app:layout_constraintEnd_toEndOf="@id/maintenance_course_dialog_layout_value"
+            app:layout_constraintStart_toStartOf="@id/maintenance_course_dialog_layout_value"
+            app:layout_constraintTop_toBottomOf="@id/maintenance_course_dialog_layout_value">
+
+            <AutoCompleteTextView
+                android:id="@+id/maintenance_course_dialog_input_modality"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@={toCourse.modality}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/maintenance_course_dialog_layout_duration"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="Duração"
+            app:layout_constraintEnd_toEndOf="@id/maintenance_course_dialog_layout_modality"
+            app:layout_constraintStart_toStartOf="@id/maintenance_course_dialog_layout_modality"
+            app:layout_constraintTop_toBottomOf="@id/maintenance_course_dialog_layout_modality">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/maintenance_course_dialog_input_duration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:text="@={Converter.intToString(toCourse.duration)}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

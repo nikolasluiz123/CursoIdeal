@@ -6,6 +6,8 @@
 
     <data>
 
+        <import type="br.com.cursoideal.converter.Converter" />
+
         <variable
             name="toCourse"
             type="br.com.cursoideal.transferobject.TOCourse" />
@@ -44,49 +46,101 @@
 
             <TextView
                 android:id="@+id/course_item_label_nome"
+                style="@style/text_view_item_list_label"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:text="Nome"
-                android:textSize="12sp"
                 app:layout_constraintEnd_toStartOf="@id/course_item_button_menu"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/course_item_instituicao"
+                style="@style/text_view_item_list_value"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@{toCourse.name}"
-                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="@id/course_item_label_nome"
                 app:layout_constraintStart_toStartOf="@id/course_item_label_nome"
                 app:layout_constraintTop_toBottomOf="@id/course_item_label_nome"
-                tools:text="Ciência da Computação" />
+                tools:text="Análise e Desenvolvimento de Sistemas" />
 
             <TextView
                 android:id="@+id/course_item_label_mensalidade"
+                style="@style/text_view_item_list_label"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:text="Mensalidade"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="@id/course_item_label_nome"
+                app:layout_constraintEnd_toStartOf="@id/course_item_label_modality"
+                app:layout_constraintHorizontal_weight="0.25"
                 app:layout_constraintStart_toStartOf="@id/course_item_label_nome"
                 app:layout_constraintTop_toBottomOf="@id/course_item_instituicao" />
 
             <TextView
                 android:id="@+id/course_item_mensalidade"
+                style="@style/text_view_item_list_money_value"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@{toCourse.value}"
-                android:textColor="@color/green"
-                android:textStyle="bold"
+                android:layout_marginEnd="8dp"
+                android:text="@{Converter.doubleToStringMoneyValue(toCourse.value)}"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@id/course_item_label_mensalidade"
+                app:layout_constraintEnd_toStartOf="@id/course_item_modality"
+                app:layout_constraintHorizontal_weight="0.25"
                 app:layout_constraintStart_toStartOf="@id/course_item_label_mensalidade"
                 app:layout_constraintTop_toBottomOf="@id/course_item_label_mensalidade"
                 tools:text="R$ 1400,00" />
+
+            <TextView
+                android:id="@+id/course_item_label_modality"
+                style="@style/text_view_item_list_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="Modalidade"
+                app:layout_constraintEnd_toStartOf="@id/course_item_label_duration"
+                app:layout_constraintHorizontal_weight="0.25"
+                app:layout_constraintStart_toEndOf="@id/course_item_label_mensalidade"
+                app:layout_constraintTop_toTopOf="@id/course_item_label_mensalidade" />
+
+            <TextView
+                android:id="@+id/course_item_modality"
+                style="@style/text_view_item_list_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="@{toCourse.modality}"
+                app:layout_constraintEnd_toStartOf="@id/course_item_duration"
+                app:layout_constraintHorizontal_weight="0.25"
+                app:layout_constraintStart_toEndOf="@id/course_item_mensalidade"
+                app:layout_constraintTop_toBottomOf="@id/course_item_label_modality"
+                tools:text="Presencial" />
+
+            <TextView
+                android:id="@+id/course_item_label_duration"
+                style="@style/text_view_item_list_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="Duração"
+                app:layout_constraintEnd_toStartOf="@id/course_item_button_menu"
+                app:layout_constraintHorizontal_weight="0.4"
+                app:layout_constraintStart_toEndOf="@id/course_item_label_modality"
+                app:layout_constraintTop_toTopOf="@id/course_item_label_mensalidade" />
+
+            <TextView
+                android:id="@+id/course_item_duration"
+                style="@style/text_view_item_list_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{Converter.semestersToStringRepresentation(toCourse.duration)}"
+                app:layout_constraintEnd_toEndOf="@id/course_item_label_duration"
+                app:layout_constraintHorizontal_weight="0.4"
+                app:layout_constraintStart_toEndOf="@id/course_item_modality"
+                app:layout_constraintTop_toBottomOf="@id/course_item_label_duration"
+                tools:text="2 anos e 6 meses" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

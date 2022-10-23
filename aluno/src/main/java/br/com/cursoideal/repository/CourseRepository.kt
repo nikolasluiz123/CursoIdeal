@@ -3,8 +3,11 @@ package br.com.cursoideal.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import br.com.cursoideal.model.Course
+import br.com.cursoideal.model.Institution
 import br.com.cursoideal.repository.enumerations.FirebaseCollections
 import br.com.cursoideal.transferobject.TOCourse
+import br.com.cursoideal.transferobject.TOCourseComplete
+import br.com.cursoideal.transferobject.TOInstitution
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
 
@@ -47,4 +50,20 @@ class CourseRepository(private val firebaseFirestore: FirebaseFirestore) {
         }
     }
 
+    fun findAll(): LiveData<Response<List<TOCourseComplete>>> = MutableLiveData<Response<List<TOCourseComplete>>>().apply {
+        val courses = mutableListOf<TOCourseComplete>()
+
+        firebaseFirestore.collection(FirebaseCollections.INSTITUTIONS.value).get().addOnCompleteListener { intitutionQuerySnapshot ->
+            intitutionQuerySnapshot.result.forEach { institutionDocument ->
+                val toInstitution = TOInstitution(institutionDocument.id, institutionDocument.toObject<Institution>())
+
+                institutionDocument.reference.collection(FirebaseCollections.COURSES.value).get().addOnCompleteListener { courseQuerySnapshot ->
+                    courseQuerySnapshot.result.forEach { courseDocument ->
+                        val toCourse = TOCourse(courseDocument.id, courseDocument.toObject<Course>())
+                        courses.add(TOCourseComplete(toInstitution, toCourse))
+                    }
+                }
+            }
+        }
+    }
 }

@@ -42,6 +42,12 @@
         <item name="android:textColor">@color/value_text_color</item>
     </style>
 
+    <style name="text_view_item_list_money_value">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/green</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="text_view_label">
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/label_text_color</item>
