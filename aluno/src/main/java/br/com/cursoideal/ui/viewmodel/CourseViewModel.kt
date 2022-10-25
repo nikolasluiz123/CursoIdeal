@@ -22,4 +22,6 @@ class CourseViewModel(
     fun delete(institutionId: String, courseId: String): LiveData<ResponseVoid> = courseRepository.delete(institutionId, courseId)
 
     fun findAll(): LiveData<Response<List<TOCourseComplete>>> = courseRepository.findAll()
+
+    fun findBy(institutionId: String, courseId: String): LiveData<Response<TOCourseComplete>> = courseRepository.findBy(institutionId, courseId)
 }

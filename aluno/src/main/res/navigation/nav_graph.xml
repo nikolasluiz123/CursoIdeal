@@ -115,6 +115,13 @@
         android:id="@+id/detailsCourseFragment"
         android:name="br.com.cursoideal.ui.fragment.DetailsCourseFragment"
         android:label="@string/label_title_details_course_fragment"
-        tools:layout="@layout/fragment_details_course" />
+        tools:layout="@layout/fragment_details_course">
+        <argument
+            android:name="idInstitution"
+            app:argType="string" />
+        <argument
+            android:name="idCourse"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

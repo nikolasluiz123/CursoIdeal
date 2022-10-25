@@ -30,7 +30,12 @@ class CoursesFragment : AbstractSessionedFragment() {
         binding.coursesFragmentRecyclerview.adapter = adapter
 
         adapter.onItemClick = { toCourseComplete ->
-            // navegar para a tela de detalhes
+            val idInstitution = toCourseComplete.toInstitution.id
+            val idCourse = toCourseComplete.toCourse.id
+
+            if (idInstitution != null && idCourse != null) {
+                navController.navigate(CoursesFragmentDirections.actionCoursesFragmentToDetailsCourseFragment(idInstitution, idCourse))
+            }
         }
 
         courseViewModel.findAll().observe(viewLifecycleOwner) { response -> response.data?.let(adapter::insert) }

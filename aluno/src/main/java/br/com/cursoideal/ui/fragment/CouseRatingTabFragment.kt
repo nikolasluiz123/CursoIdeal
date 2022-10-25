@@ -4,13 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import br.com.cursoideal.databinding.FragmentCourseInfosTabBinding
 import br.com.cursoideal.databinding.FragmentCourseRatingTabBinding
-import br.com.cursoideal.databinding.FragmentCoursesBinding
-import br.com.cursoideal.databinding.FragmentHomeBinding
 import br.com.cursoideal.ui.fragment.base.AbstractSessionedFragment
 
-class CouseRatingTabFragment : AbstractSessionedFragment() {
+class CouseRatingTabFragment(private val args: DetailsCourseFragmentArgs) : AbstractSessionedFragment() {
 
     private var _binding: FragmentCourseRatingTabBinding? = null
     private val binding get() = _binding!!

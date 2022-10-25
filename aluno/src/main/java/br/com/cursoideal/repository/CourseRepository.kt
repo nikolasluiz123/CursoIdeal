@@ -1,6 +1,5 @@
 package br.com.cursoideal.repository
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import br.com.cursoideal.model.Course
@@ -41,6 +40,24 @@ class CourseRepository(private val firebaseFirestore: FirebaseFirestore) {
         }.addOnFailureListener { value = Response(false, error = it.message) }
     }
 
+    fun findBy(institutionId: String, courseId: String): LiveData<Response<TOCourseComplete>> = MutableLiveData<Response<TOCourseComplete>>().apply {
+        val institutionDocument = firebaseFirestore.collection(FirebaseCollections.INSTITUTIONS.value).document(institutionId)
+
+        institutionDocument.get().addOnCompleteListener { instDoc ->
+
+            instDoc.result.toObject<Institution>()?.let { institution ->
+                val toInstitution = TOInstitution(instDoc.result.id, institution)
+
+                institutionDocument.collection(FirebaseCollections.COURSES.value).document(courseId).get().addOnCompleteListener { courseDoc ->
+                    courseDoc.result.toObject<Course>()?.let { course ->
+                        val toCourse = TOCourse(courseDoc.result.id, course)
+                        value = Response(courseDoc.isSuccessful, TOCourseComplete(toInstitution, toCourse), courseDoc.exception?.message)
+                    }
+                }
+            }
+        }
+    }
+
     fun delete(institutionId: String, courseId: String): LiveData<ResponseVoid> = MutableLiveData<ResponseVoid>().apply {
         val institutionsCollection = firebaseFirestore.collection(FirebaseCollections.INSTITUTIONS.value)
         val coursesCollection = institutionsCollection.document(institutionId).collection(FirebaseCollections.COURSES.value)
@@ -53,32 +70,31 @@ class CourseRepository(private val firebaseFirestore: FirebaseFirestore) {
 
     fun findAll(): LiveData<Response<List<TOCourseComplete>>> = MutableLiveData<Response<List<TOCourseComplete>>>().apply {
         val courses = mutableListOf<TOCourseComplete>()
-        var succsess = true
-        var error: String?
 
         firebaseFirestore.collection(FirebaseCollections.INSTITUTIONS.value).get().addOnCompleteListener { institutionQuerySnapshot ->
-            institutionQuerySnapshot.result.forEach {  institutionDocument ->
+            institutionQuerySnapshot.result.forEach { institutionDocument ->
                 val institution = institutionDocument.toObject<Institution>()
                 val toInstitution = TOInstitution(institutionDocument.id, institution)
 
                 value = Response(institutionQuerySnapshot.isSuccessful, courses, institutionQuerySnapshot.exception?.message)
 
                 if (institutionQuerySnapshot.isSuccessful) {
-                    institutionDocument.reference.collection(FirebaseCollections.COURSES.value).get().addOnCompleteListener { courseQuerySnapshot ->
+                    institutionDocument.reference.collection(FirebaseCollections.COURSES.value).get()
+                        .addOnCompleteListener { courseQuerySnapshot ->
 
-                        value = Response(courseQuerySnapshot.isSuccessful, courses, courseQuerySnapshot.exception?.message)
+                            value = Response(courseQuerySnapshot.isSuccessful, courses, courseQuerySnapshot.exception?.message)
 
-                        if (courseQuerySnapshot.isSuccessful) {
-                            courseQuerySnapshot.result.forEach { courseDocument ->
-                                val course = courseDocument.toObject<Course>()
-                                val toCourse = TOCourse(courseDocument.id, course)
-                                val toCourseComplete = TOCourseComplete(toInstitution, toCourse)
-                                courses.add(toCourseComplete)
+                            if (courseQuerySnapshot.isSuccessful) {
+                                courseQuerySnapshot.result.forEach { courseDocument ->
+                                    val course = courseDocument.toObject<Course>()
+                                    val toCourse = TOCourse(courseDocument.id, course)
+                                    val toCourseComplete = TOCourseComplete(toInstitution, toCourse)
+                                    courses.add(toCourseComplete)
+                                }
+
+                                value = Response(true, courses)
                             }
-
-                            value = Response(true, courses)
                         }
-                    }
                 }
             }
         }
